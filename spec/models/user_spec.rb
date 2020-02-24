@@ -7,6 +7,7 @@ RSpec.describe "User", :type => :user do
       last_name: "John",
       details: "An avid plant collector",
       email: "elton.john@rocketman.com",
+      password: "password",
       avatar_url: ""
     }
   end
@@ -16,6 +17,7 @@ RSpec.describe "User", :type => :user do
       name: "Fern",
       description: "A green fern",
       location: "Richmond",
+      category: "green",
       price: 42.69
     }
   end
@@ -35,8 +37,9 @@ RSpec.describe "User", :type => :user do
 
   it "should destroy child plants when destroying self" do
     user = User.create!(valid_attributes)
-    plant = Plant.create!(name: "Fern")
-    user.plants.create(valid_plant)
+    plant = Plant.new(valid_plant)
+    plant.user_id = user.id
+    plant.save!
     expect { user.destroy }.to change { Plant.count }.from(1).to(0)
   end
 
