@@ -11,17 +11,33 @@ RSpec.describe "User", :type => :user do
     }
   end
 
+  let(:valid_plant) do
+    {
+      name: "Fern",
+      description: "A green fern",
+      location: "Richmond",
+      price: 42.69
+    }
+  end
+
   # Enforces these attributes when creatign plant: name, location, price, category
 
   # name
   it "has a first name" do
-    user = user.new(first_name: "Elton")
-    expect(plant.name).to eq("Elton")
+    user = User.new(first_name: "Elton")
+    expect(user.first_name).to eq("Elton")
   end
 
   it "has a last name" do
-    user = user.new(last_name: "John")
-    expect(user.name).to eq("John")
+    user = User.new(last_name: "John")
+    expect(user.last_name).to eq("John")
+  end
+
+  it "should destroy child plants when destroying self" do
+    user = User.create!(valid_attributes)
+    plant = Plant.create!(name: "Fern")
+    user.plants.create(valid_plant)
+    expect { user.destroy }.to change { Plant.count }.from(1).to(0)
   end
 
   # it "name cannot be blank" do
