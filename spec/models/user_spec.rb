@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "User", :type => :user do
+  # Hash for valid user attributes to test build user
   let(:valid_attributes) do
     {
       first_name: "Elton",
@@ -11,7 +12,7 @@ RSpec.describe "User", :type => :user do
       avatar_url: ""
     }
   end
-
+  # Hash for valid plant attributes to test user
   let(:valid_plant) do
     {
       name: "Fern",
@@ -21,13 +22,27 @@ RSpec.describe "User", :type => :user do
       price: 42.69
     }
   end
+  # Hash for booking plant attributes to test user
+  let(:valid_booking) do
+    {
+      start_date: DateTime.parse("25-2-2020"),
+      end_date: DateTime.parse("26-2-2020")
+    }
+  end
 
-  # Enforces these attributes when creatign plant: name, location, price, category
+  # Enforces these attributes when creating user: first name, last_name
 
   # name
-  it "has a first name" do
+  it "has a first_name" do
     user = User.new(first_name: "Elton")
     expect(user.first_name).to eq("Elton")
+  end
+
+  it "first_name cannot be blank" do
+    attributes = valid_attributes
+    attributes.delete(:first_name)
+    user = User.new(attributes)
+    expect(user).not_to be_valid
   end
 
   it "has a last name" do
@@ -35,6 +50,14 @@ RSpec.describe "User", :type => :user do
     expect(user.last_name).to eq("John")
   end
 
+  it "last_name cannot be blank" do
+    attributes = valid_attributes
+    attributes.delete(:last_name)
+    user = User.new(attributes)
+    expect(user).not_to be_valid
+  end
+
+  # Destroys children plants and bookings when User is removed
   it "should destroy child plants when destroying self" do
     user = User.create!(valid_attributes)
     plant = Plant.new(valid_plant)
@@ -43,47 +66,15 @@ RSpec.describe "User", :type => :user do
     expect { user.destroy }.to change { Plant.count }.from(1).to(0)
   end
 
-  # it "name cannot be blank" do
-  #   attributes = valid_attributes
-  #   attributes.delete(:name)
-  #   plant = Plant.new(attributes)
-  #   expect(plant).not_to be_valid
-  # end
-
-  # # location
-  # it "has a location" do
-  #   plant = Plant.new(location: "Richmond")
-  #   expect(plant.location).to eq("Richmond")
-  # end
-
-  # it "location cannot be blank" do
-  #   attributes = valid_attributes
-  #   attributes.delete(:location)
-  #   plant = Plant.new(attributes)
-  #   expect(plant).not_to be_valid
-  # end
-
-  # # price
-  # it "has a price" do
-  #   plant = Plant.new(price: 42.69)
-  #   expect(plant.price).to eq(42.69)
-  # end
-
-  # it "price is a float" do
-  #   plant = Plant.new(price: "invalid")
-  #   expect(plant).not_to be_valid
-  # end
-
-  # it "price cannot be blank" do
-  #   attributes = valid_attributes
-  #   attributes.delete(:price)
-  #   plant = Plant.new(attributes)
-  #   expect(plant).not_to be_valid
-  # end
-
-  # it "has many bookings" do
-  #   plant = Plant.new(valid_attributes)
-  #   expect(plant).to respond_to(:bookings)
-  #   expect(plant.bookings.count).to eq(0)
-  # end
+  it "should destroy child plant booking when destroying self" do
+    user = User.create!(valid_attributes)
+    plant = Plant.new(valid_plant)
+    plant.user_id = user.id
+    plant.save!
+    booking = Booking.new(valid_booking)
+    booking.user_id = user.id
+    booking.plant_id = plant.id
+    booking.save!
+    expect { user.destroy }.to change { Booking.count }.from(1).to(0)
+  end
 end
