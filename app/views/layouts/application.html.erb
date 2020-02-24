@@ -10,9 +10,15 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <%= yield %>
-    <%= javascript_include_tag 'application' %>
+    <!-- Devise authentication alerts and notices -->
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
+    <!-- Embedded ruby views -->
+    <%= yield %>
+
+    <!-- Webpack Javascript -->
+    <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>
 </html>
