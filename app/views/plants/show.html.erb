@@ -10,4 +10,14 @@ show.html.erb
   <li><%= @plant.user %></li>
 </ul>
 
+<h3>Plant reviews</h3>
+<% @bookings.each do |booking| %>
+  <% if booking.review %>
+    <p><%= booking.review.rating %> Stars </p>
+    <%= booking.review.content %>
+  <% else %>
+    <p>Please add a review...</p>
+  <% end %>
+<% end %>
+
 <%= link_to "Update that plant", edit_plant_path(@plant) %>
