@@ -1,37 +1,34 @@
 class ReviewsController < ApplicationController
-  def new
-    @booking = Booking.find(params[:booking_id])
-    @review = Review.new
-  end
+  before_action :set_booking, only: [:new, :show, :create, :edit, :update]
+  before_action :create_new_review, only: [:new]
+
+  def new; end
 
   def create
     @review = Review.new(review_params)
     @review.booking_id = params[:booking_id]
 
     if @review.save
-      redirect_to root_path
+      redirect_to root_path # This should be changed to plant page
     else
-      @booking = Booking.find(params[:booking_id])
-      @review = Review.new
+      set_booking
+      create_new_review
       render :new
     end
   end
 
   def edit
-    @booking = Booking.find(params[:booking_id])
-    @review = @booking.review
-    # raise
+    get_booking_review
   end
 
   def update
-    @booking = Booking.find(params[:booking_id])
-    @review = @booking.review
+    get_booking_review
     if @review.update(review_params)
       redirect_to root_path
 
     else
-      @booking = Booking.find(params[:booking_id])
-      @review = @booking.review
+      set_booking
+      get_booking_review
       render :edit
     end
   end
@@ -39,10 +36,22 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.delete
-    redirect_to root_path
+    redirect_to root_path # should this go to bookings plant page
   end
 
   private
+
+  def create_new_review
+    @review = Review.new
+  end
+
+  def set_booking
+    @booking = Booking.find(params[:booking_id])
+  end
+
+  def get_booking_review
+    @review = @booking.review
+  end
 
   def review_params
     params.require(:review).permit(:content, :rating)

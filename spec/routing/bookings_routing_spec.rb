@@ -14,8 +14,8 @@ if defined?(BookingsController)
         expect(:get => "/plants/1/bookings/new").to route_to(controller: "bookings", action: "new", plant_id: "1")
       end
 
-      it "routes to #create" do
-        expect(:post => "/plants/1/bookings").to route_to(controller: "bookings", action: "create", plant_id: "1")
+      it "Booking creation: routes to #show" do
+        expect(:post => "/bookings/").to route_to(controller: "bookings", action: "create")
       end
 
       it "routes to #destroy" do
