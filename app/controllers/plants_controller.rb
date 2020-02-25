@@ -7,6 +7,7 @@ class PlantsController < ApplicationController
 
   def show
     @plant = Plant.find(params[:id])
+    @bookings = @plant.bookings
   end
 
   def new
@@ -44,6 +45,11 @@ class PlantsController < ApplicationController
   end
 
   private
+
+  def booking_dates
+    raise
+    redirect_to new_plant_booking_path
+  end
 
   def plant_params
     params.require(:plant).permit(:name, :description, :location, :price, :category)

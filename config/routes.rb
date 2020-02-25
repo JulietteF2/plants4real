@@ -4,11 +4,14 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users, only: [:show]
+  resources :reviews, only: [:destroy]
 
 
   resources :plants do
-    resources :bookings, only: [:new, :create]
+    resources :bookings, only: [:new]
   end
-
-  resources :bookings, except: [:new, :create, :index]
-end
+  
+  resources :bookings, except: [:new, :create, :index] do
+    resources :reviews, only: [:new, :create, :edit, :update, :index]
+  end
+  

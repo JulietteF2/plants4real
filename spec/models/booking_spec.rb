@@ -93,10 +93,9 @@ RSpec.describe "Booking", :type => :booking do
   end
 
   # Has many review children
-  it "has many reviews" do
+  it "has a review" do
     booking = Booking.new(valid_booking)
-    expect(booking).to respond_to(:reviews)
-    expect(booking.reviews.count).to eq(0)
+    expect(booking).to respond_to(:review)
   end
 
   # Destroys children reviews when Booking is removed
