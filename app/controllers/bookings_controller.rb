@@ -5,18 +5,26 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
+    @booking.user = current_user
+    @booking.plant_id = params[:plant_id]
+    @booking.start_date = params[:booking_dates]["start_date"]
+    @booking.end_date = params[:booking_dates]["end_date"]
+    @booking.total_price = set_total_price
+    @booking.status = 'Pending'
   end
 
   def create
     @booking = Booking.new(booking_params)
-    @booking.user = current_user
-    @booking.plant_id = params[:plant_id]
-    @booking.total_price = set_total_price
-    @booking.status = 'Pending'
-
-    if @booking.save
+    # @booking.user = current_user
+    # @booking.plant_id = params[:plant_id]
+    # @booking.start_date = params[:booking_dates]["start_date"]
+    # @booking.end_date = params[:booking_dates]["end_date"]
+    # @booking.total_price = set_total_price
+    # @booking.status = 'Pending'
+    if @booking.save!
       redirect_to booking_path(@booking)
     else
+      puts "not valid"
       render :new
     end
   end
@@ -38,14 +46,14 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date, :status)
+    params.require(:booking).permit(:start_date, :end_date, :status, :user_id, :total_price, :plant_id)
   end
 
   def set_total_price
     @plant = Plant.find(params[:plant_id])
     # Need to retrieve start date and end date from params (query maybe?)
     # booking end_date - start_date returns SECONDS
-    (@booking.end_date - @booking.start_date) * @plant.price
+    ((@booking.end_date - @booking.start_date) / 86400) * @plant.price
   end
 end
 
