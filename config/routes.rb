@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   resources :plants do
     resources :bookings, only: [:new]
   end
-  
+
   resources :bookings, except: [:new, :create, :index] do
     resources :reviews, only: [:new, :create, :edit, :update, :index]
   end
-  
+end
