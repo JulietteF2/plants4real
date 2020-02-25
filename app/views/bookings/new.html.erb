@@ -1,11 +1,10 @@
-new.html.erb
-<h1>Create a new booking</h1>
+<h1>Confirm a new booking</h1>
 
 <ul>
-  <li>Plant you would like to rend: <%= @booking.plant.name %></li>
-  <li>From <%= @booking.plant.user.first_name %></li>
-  <li>Start date: <%= @booking.start_date %></li>
-  <li>End date: <%= @booking.end_date %></li>
+  <li>Plant for booking: <%= @booking.plant.name %></li>
+  <li>Plant owner <%= @booking.plant.user.first_name %></li>
+  <li>From: <%= @booking.start_date.strftime("%d of %B, %Y") %></li>
+  <li>Until: <%= @booking.end_date.strftime("%d of %B, %Y") %></li>
   <li>Total price: <%= @booking.total_price %>$</li>
 </ul>
 

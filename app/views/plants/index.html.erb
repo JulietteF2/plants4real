@@ -1,10 +1,24 @@
-index.html.erb
+<!-- Title section row -->
+<div class="row">
+  <div class="col-12">
+    <h1>Look at these beautiful plants</h1>
+  </div>
+</div>
 
-<h1>Look at those beautiful plants</h1>
-
-<ul>
-  <% @plants.each do |plant| %>
-  <li><%= link_to plant.name, plant_path(plant) %> - <%= plant.description %>, <%= plant.location %> / <%= plant.price %>$ <%= plant.category %></li>
+<!-- Dynamically rendered Row changes when a user is signed in -->
+<div class="row">
+  <% if user_signed_in? %>
+    <div class="col-12">
+      <p>You are signed in! ✅</p>
+    </div>
+  <% else %>
+    <div class="col-12">
+      <p>You are not signed in ⚠️</p>
+    </div>
   <% end %>
-</ul>
+</div>
 
+<!-- Row containing all the plants -->
+<div class="row">
+  <%= render 'shared/plants/plant_index_card' %>
+</div>

@@ -1,0 +1,10 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Category: <%= @plant.category %></h5>
+    <h6 class="card-subtitle mb-2 text-muted">Location: <%= @plant.location %></h6>
+    <p class="card-text">Description: <%= @plant.description %></p>
+    <p class="card-text">Plant Owner: <%= "#{@plant.user.first_name} #{@plant.user.last_name}"%></p>
+    <a href="#" class="card-link"><%= link_to "Edit Plant", edit_plant_path(@plant) %></a> |
+    <a href="#" class="card-link"><%= link_to "Delete Plant", plant_path(@plant), method: :delete %></a>
+  </div>
+</div>

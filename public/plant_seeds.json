@@ -1,0 +1,115 @@
+{"plants":[
+  {
+    "name":"Air Plants",
+    "description":"Sometimes hard to find, airplants can survive and thrive in pretty much any environment, as all they need is fresh air, a nice place to hangout an a spritz of water regularly, Just give an air plant a bath every now and then.",
+    "location":"Inspire 9, Richmond VIC",
+    "price":"35.00",
+    "category":"Indoor",
+    "image_url":"https://i.pinimg.com/564x/81/62/de/8162de8a65217297c4f8d7a121d0e275.jpg",
+    "user_first_name":"Daniel",
+    "bookings":[
+      {
+        "start_date": "02.03.2020",
+        "end_date": "07.03.2020",
+        "status": "pending",
+        "first_name": "Daniel",
+        "review":[
+          {
+            "content": "A very decent plant. I'd rent it again!",
+            "rating": "4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name":"Peace Lily",
+    "description":"If your office space gets a little indirect light a peace lily is a beautiful flowering indoor plant with verdant green leaves that are known for their air purification abilities.",
+    "location":"Inspire 9, Richmond VIC",
+    "price":"45.00",
+    "category":"Indoor",
+    "image_url":"https://i.pinimg.com/564x/ec/4e/38/ec4e384f4faf4cbfb84340557edf73a2.jpg",
+    "user_first_name":"Juliette",
+    "bookings":[
+      {
+        "start_date": "02.04.2020",
+        "end_date": "07.05.2020",
+        "status": "pending",
+        "first_name": "Daniel"
+      }
+    ]
+  },
+  {
+    "name":"Snake Plant",
+    "description":"The snake plant (AKA mother-in-laws tongue) is an indoor plant that even a blackthumb can keep alive with little effort. They’re striking enough to show a little personality and can also purify their immediate air space.",
+    "location":"Juliette's Place, South Yarra VIC",
+    "price":"115.00",
+    "category":"House",
+    "image_url":"https://i.pinimg.com/564x/01/3a/74/013a74b738888daa1abc3a1d62318619.jpg",
+    "user_first_name":"Juliette",
+    "bookings":[
+      {
+        "start_date": "02.05.2020",
+        "end_date": "07.05.2020",
+        "status": "pending",
+        "first_name": "Daniel"
+      },
+      {
+        "start_date": "02.06.2020",
+        "end_date": "07.06.2020",
+        "status": "pending",
+        "first_name": "Nicholas",
+        "review":[
+          {
+            "content": "My favourite plant ever ever ever!!",
+            "rating": "5"
+          }
+        ]
+      },
+      {
+        "start_date": "02.07.2020",
+        "end_date": "07.07.2020",
+        "status": "pending",
+        "first_name": "Ellen",
+        "review":[
+          {
+            "content": "Meh...",
+            "rating": "2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name":"Cast Iron Plant",
+    "description":"If you’re office is freezing one day then sweltering the next, the cast iron plant is a temperature-resilient variety is known for being low maintenance and being able to survive in almost any condition.",
+    "location":"Ellen's place, Melbourne CBD VIC",
+    "price":"55.00",
+    "category":"Office",
+    "image_url":"https://i.pinimg.com/564x/ba/f1/f3/baf1f31654c38496cfb44543d6ba9c04.jpg",
+    "user_first_name":"Ellen",
+    "bookings":[
+      {
+        "start_date": "01.01.2020",
+        "end_date": "02.01.2020",
+        "status": "approved",
+        "first_name": "Juliette",
+        "review":[
+          {
+            "content": "Cool plant. Very green ~ <3",
+            "rating": "3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name":"Devil's Ivy",
+    "description":"Devil's ivy is another plant that will do well in the office as long as your desk gets some sunlight. It only requires a water when the soil is dry, and bright, indirect light.",
+    "location":"Daniel's place, Melbourne CBD VIC",
+    "price":"12.00",
+    "category":"House",
+    "image_url":"https://i.pinimg.com/564x/4a/5b/ad/4a5bad3ba89679e6d2b28941916ba4a9.jpg",
+    "user_first_name":"Daniel"
+  }
+]}
