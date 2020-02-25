@@ -46,6 +46,11 @@ class PlantsController < ApplicationController
 
   private
 
+  def booking_dates
+    raise
+    redirect_to new_plant_booking_path
+  end
+
   def plant_params
     params.require(:plant).permit(:name, :description, :location, :price, :category)
   end

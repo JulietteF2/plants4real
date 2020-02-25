@@ -1,0 +1,20 @@
+new.html.erb
+<h1>Create a new booking</h1>
+
+<ul>
+  <li>Plant you would like to rend: <%= @booking.plant.name %></li>
+  <li>From <%= @booking.plant.user.first_name %></li>
+  <li>Start date: <%= @booking.start_date %></li>
+  <li>End date: <%= @booking.end_date %></li>
+  <li>Total price: <%= @booking.total_price %>$</li>
+</ul>
+
+<%= simple_form_for @booking do |f| %>
+  <%= f.input :start_date, as: :hidden %>
+  <%= f.input :end_date, as: :hidden %>
+  <%= f.input :status, as: :hidden %>
+  <%= f.input :plant_id, as: :hidden %>
+  <%= f.input :total_price, as: :hidden %>
+  <%= f.input :user_id, as: :hidden %>
+  <%= f.submit "Book", class: "btn btn-primary" %>
+<% end %>
