@@ -1,40 +1,52 @@
+require 'json'
+require 'open-uri'
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+puts 'making shiny happy people'
 
+user_1 = User.create!(email: "daniel.wolf@test.com", password: "password", first_name: "Daniel", last_name: "Wolf-Clark", details: "Likes gingerbread", avatar_url: "https://avatars3.githubusercontent.com/u/9943525?v=4")
+user_2 = User.create!(email: "testing7@test.fr", password: "password", first_name: "Juliette", last_name: "Ferrer", details: "Codes too fast", avatar_url: "https://avatars2.githubusercontent.com/u/54906060?v=4")
+user_3 = User.create!(email: "nicholas.zeitoun@test.com", password: "password", first_name: "Nicholas", last_name: "Zeitoun", details: "Codes beautifully", avatar_url: "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1578904883/qcs8p18kfktz6p5q7syd.jpg")
+user_4 = User.create!(email: "ellen.zhuang@test.com", password: "password", first_name: "Ellen", last_name: "Zhuang", details: "Was sick on Monday", avatar_url: "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1578876938/fn6z8dodasn5rsucxxds.jpg")
 
-bob = User.create!(email: "testing7@test.fr", password: "password", first_name: "Testing2", last_name: "Testing2", details: nil, avatar_url: nil)
-bob2 = User.create!(email: "testing3@test.fr", password: "password", first_name: "Testing3", last_name: "Testing3", details: nil, avatar_url: nil)
-bob3 = User.create!(email: "testing4@test.fr", password: "password", first_name: "Testing4", last_name: "Testing4", details: nil, avatar_url: nil)
-bob4 = User.create!(email: "testing5@test.fr", password: "password", first_name: "Testing5", last_name: "Testing5", details: nil, avatar_url: nil)
-bob5 = User.create!(email: "testing6@test.fr", password: "password", first_name: "Testing6", last_name: "Testing6", details: nil, avatar_url: nil)
+puts 'gathering seeds...'
 
-plant1 = Plant.create!(name: "Testplant3", location: "Testloc3", price: 5.6, category: "indoor", user: bob)
-plant2 = Plant.create!(name: "Testplant4", location: "Testloc4", price: 5.6, category: "indoor", user: bob2)
-plant3 = Plant.create!(name: "Testplant5", location: "Testloc5", price: 5.6, category: "indoor", user: bob3)
-plant4 = Plant.create!(name: "Testplant6", location: "Testloc6", price: 5.6, category: "indoor", user: bob4)
-plant5 = Plant.create!(name: "Testplant7", location: "Testloc7", price: 5.6, category: "indoor", user: bob5)
-plant6 = Plant.create!(name: "Testplant8", location: "Testloc8", price: 5.6, category: "indoor", user: bob)
+def find_user_id(first_name)
+  user = User.where(first_name: first_name).first
+  user.id
+end
 
-book1 = Booking.create!(start_date: "02.03.2020", end_date: "03.04.2020", user: bob, plant: plant2)
-book2 = Booking.create!(start_date: "15.03.2020", end_date: "03.04.2020", user: bob2, plant: plant3)
-book3 = Booking.create!(start_date: "02.03.2020", end_date: "20.04.2020", user: bob3, plant: plant4)
-book4 = Booking.create!(start_date: "07.05.2020", end_date: "22.11.2020", user: bob4, plant: plant5)
-book5 = Booking.create!(start_date: "02.03.2020", end_date: "03.04.2020", user: bob5, plant: plant6)
-book6 = Booking.create!(start_date: "15.03.2020", end_date: "03.04.2020", user: bob, plant: plant2)
-book7 = Booking.create!(start_date: "02.03.2020", end_date: "20.04.2020", user: bob2, plant: plant1)
-book8 = Booking.create!(start_date: "07.05.2020", end_date: "22.11.2020", user: bob3, plant: plant3)
+data = File.read('public/plant_seeds.json')
+new_plants = JSON.parse(data)
+new_plants['plants'].each do |new_plant|
+  created_plant = Plant.new(
+    name: new_plant['name'],
+    description: new_plant['description'],
+    location: new_plant['location'],
+    price: new_plant['price'],
+    category: new_plant['category'],
+    user_id: find_user_id(new_plant['user_first_name'])
+  )
+  created_plant.save!
+  if new_plant['bookings']
+    new_plant['bookings'].each do |booking|
+      created_booking = Booking.new(
+        status: booking['status'],
+        plant_id: created_plant.id,
+        start_date: booking['start_date'],
+        end_date: booking['end_date'],
+        user_id: find_user_id(booking['first_name'])
+      )
+      created_booking.total_price = 20 # should update this
+      created_booking.save!
+      if booking['review']
+        review = Review.create!(
+          content: booking['review'][0]['content'],
+          rating: booking['review'][0]['rating'],
+          booking_id: created_booking.id
+        )
+      end
+    end
+  end
+end
 
-
-Review.create!(rating: 1, booking: book1)
-Review.create!(rating: 2, booking: book2)
-Review.create!(rating: 3, booking: book3)
-Review.create!(rating: 4, booking: book4)
-Review.create!(rating: 5, booking: book5)
-Review.create!(rating: 3, booking: book6)
-
+puts 'Plants have grown 🌱☺️🌈'
