@@ -44,6 +44,7 @@ class BookingsController < ApplicationController
   def set_total_price
     @plant = Plant.find(params[:plant_id])
     # Need to retrieve start date and end date from params (query maybe?)
+    # booking end_date - start_date returns SECONDS
     (@booking.end_date - @booking.start_date) * @plant.price
   end
 end
