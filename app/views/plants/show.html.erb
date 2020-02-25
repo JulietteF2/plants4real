@@ -1,0 +1,13 @@
+show.html.erb
+
+<h1>Look at this <%= @plant.name %></h1>
+
+<ul>
+  <li><%= @plant.description %></li>
+  <li><%= @plant.location %></li>
+  <li><%= @plant.price %></li>
+  <li><%= @plant.category %></li>
+  <li><%= @plant.user %></li>
+</ul>
+
+<%= link_to "Update that plant", edit_plant_path(@plant) %>
