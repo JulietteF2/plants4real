@@ -1,13 +1,11 @@
-show.html.erb
-
-<h1>Look at this <%= @plant.name %></h1>
+<h1><%= @plant.name %></h1>
 
 <ul>
-  <li><%= @plant.description %></li>
-  <li><%= @plant.location %></li>
-  <li><%= @plant.price %>$</li>
-  <li><%= @plant.category %></li>
-  <li><%= @plant.user %></li>
+  <li>Description: <%= @plant.description %></li>
+  <li>Location: <%= @plant.location %></li>
+  <li>Price: <%= @plant.price %>$</li>
+  <li>Category: <%= @plant.category %></li>
+  <li>Plant Owner: <%= "#{@plant.user.first_name} #{@plant.user.last_name}"%></li>
 </ul>
 
 <h3>Plant reviews</h3>
@@ -15,23 +13,19 @@ show.html.erb
   <% if booking.review %>
     <p><%= booking.review.rating %> Stars </p>
     <%= booking.review.content %>
-  <% else %>
-    <p>Please add a review...</p>
   <% end %>
 <% end %>
 
-<%= link_to "Update that plant", edit_plant_path(@plant) %>
+<!-- This functionality needs to be implemented -->
+<p>Please add a review...</p>
 
-<div class="container">
-  <div class="form-wrapper" style="width: 400px; margin: 0 auto;">
-    <h2>Flatpickr Demo</h2>
-
-    <%= simple_form_for :booking_dates, url: new_plant_booking_path(@plant), method: "get" do |f| %>
-      <%= f.input :start_date, as: :string, required: false, input_html: {class: "datepicker"} %>
-      <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker"} %>
-      <%= f.button :submit, "Book", class: "btn btn-primary" %>
-    <% end %>
-  </div>
+<div class="form-wrapper" style="width: 400px; margin: 0 auto;">
+  <h2>Flatpickr Demo</h2>
+  <%= simple_form_for :booking_dates, url: new_plant_booking_path(@plant), method: "get" do |f| %>
+    <%= f.input :start_date, as: :string, required: false, input_html: {class: "datepicker"} %>
+    <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker"} %>
+    <%= f.button :submit, "Book", class: "btn btn-primary" %>
+  <% end %>
 </div>
 
-<%= link_to "Book that plant", new_plant_booking_path(@plant) %>
+<%= link_to "Edit Plant", edit_plant_path(@plant) %>
