@@ -9,17 +9,8 @@
 <div class="row mt-4">
   <!-- 1. Two vertically stacked cards with plant detail and booking form -->
   <div class="col-md-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Category: <%= @plant.category %></h5>
-        <h6 class="card-subtitle mb-2 text-muted">Location: <%= @plant.location %></h6>
-        <p class="card-text">Description: <%= @plant.description %></p>
-        <p class="card-text">Plant Owner: <%= "#{@plant.user.first_name} #{@plant.user.last_name}"%></p>
-        <a href="#" class="card-link"><%= link_to "Edit Plant", edit_plant_path(@plant) %></a> |
-        <a href="#" class="card-link"><%= link_to "Delete Plant", plant_path(@plant), method: :delete %></a>
-      </div>
-    </div>
-    <div class="card  mt-4 p-4">
+    <%= render 'shared/plants/plant_description_card' %>
+    <div class="card mt-4 p-4">
       <div class="form-wrapper">
         <h5 class="card-title">Book this plant:</h5>
         <%= simple_form_for :booking_dates, url: new_plant_booking_path(@plant), method: "get" do |f| %>
@@ -45,21 +36,11 @@
 <div class="row mt-4">
   <div class="col-12">
     <h3>Plant reviews</h3>
-    <!-- Iterating through all the plants bookings -->
-    <% @bookings.each do |booking| %>
-      <% if booking.review %>
+
+
       <!-- Card containing review of a booking -->
-      <div class="card p-4">
-        <span>
-          <% booking.review.rating.times do %>
-            <i class="fas fa-star"></i>
-          <% end %>
-        </span>
-        <p>Comment: <%= booking.review.content %></p>
-      </div>
-      <% else %>
-        <p>This plant has no reviews...</p>
-      <% end %>
-    <% end %>
+      <%= render 'shared/reviews/review_card' %>
+
+
   </div>
 </div>
