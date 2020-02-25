@@ -1,25 +1,27 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<%= @user.first_name %>
-<% @plants.each do |plant| %>
-  <%= plant.name %>
-  <%= plant.price %>
-  <%= plant.category %>
-<%= plant.location %>
-<%end %>
-<h3>My Bookings</h3>
-  <ul>
-    <% @bookings.each do |booking| %>
-      <li>
-        <%= booking.plant.name %>
-        <% if booking.review %>
-          <%= link_to "Edit review", edit_booking_review_path(booking) %>
-          <%= link_to 'Delete review', review_path(booking.review), method: :delete %>
-        <% else %>
-          <%= link_to "Add review", new_booking_review_path(booking) %>
-        <% end %>
-      </li>
-    <%end %>
-  </ul>
+<h1><%= @user.first_name %></h1>
 
-<h3>My Leasings</h3>
+<h3>My Plants</h3>
+<ul>
+  <% @plants.each do |plant| %>
+    <li>
+      <p>Name: <%= link_to plant.name, plant_path(plant) %> | Price: <%= plant.price %></p>
+      <p>Category: <%= plant.category %> | Location: <%= plant.location %></p>
+    </li>
+  <%end %>
+</ul>
+
+<h3>My Bookings</h3>
+<ul>
+  <% @bookings.each do |booking| %>
+    <li>
+      <%= link_to "#{booking.plant.name} booking", booking_path(booking) %> |
+      <% if booking.review %>
+        <%= link_to "Edit review", edit_booking_review_path(booking) %> --
+        <%= link_to 'Delete review', review_path(booking.review), method: :delete %>
+      <% else %>
+        <%= link_to "Add review", new_booking_review_path(booking) %>
+      <% end %>
+    </li>
+  <%end %>
+</ul>
+

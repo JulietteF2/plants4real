@@ -1,0 +1,9 @@
+<%= simple_form_for @plant do |f| %>
+  <%= f.input :name, placeholder: 'Plant name...' %>
+  <%= f.input :description %>
+  <%= f.input :location %>
+  <%= f.input :price %>
+  <%= f.input :category %>
+  <br>
+  <%= f.submit %>
+<% end %>
