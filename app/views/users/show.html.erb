@@ -8,8 +8,18 @@
 <%= plant.location %>
 <%end %>
 <h3>My Bookings</h3>
-  <% @bookings.each do |booking| %>
-    <%= booking.plant.name %>
-  <%end %>
+  <ul>
+    <% @bookings.each do |booking| %>
+      <li>
+        <%= booking.plant.name %>
+        <% if booking.review %>
+          <%= link_to "Edit review", edit_booking_review_path(booking) %>
+          <%= link_to 'Delete review', review_path(booking.review), method: :delete %>
+        <% else %>
+          <%= link_to "Add review", new_booking_review_path(booking) %>
+        <% end %>
+      </li>
+    <%end %>
+  </ul>
 
 <h3>My Leasings</h3>
