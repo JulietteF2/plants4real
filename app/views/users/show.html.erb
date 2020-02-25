@@ -1,0 +1,15 @@
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+<%= @user.first_name %>
+<% @plants.each do |plant| %>
+  <%= plant.name %>
+  <%= plant.price %>
+  <%= plant.category %>
+<%= plant.location %>
+<%end %>
+<h3>My Bookings</h3>
+  <% @bookings.each do |booking| %>
+    <%= booking.plant.name %>
+  <%end %>
+
+<h3>My Leasings</h3>
