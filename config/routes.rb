@@ -6,12 +6,11 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :reviews, only: [:destroy]
 
-
   resources :plants do
     resources :bookings, only: [:new]
   end
-  
-  resources :bookings, except: [:new, :create, :index] do
+
+  resources :bookings, except: [:new] do
     resources :reviews, only: [:new, :create, :edit, :update, :index]
   end
-  
+end
