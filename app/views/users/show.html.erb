@@ -1,6 +1,6 @@
 <h1><%= @user.first_name %></h1>
-<% if @user.photo.key %>
-  <%= cl_image_tag @user.photo.key, height: 100, alt: "alttext" %>
+<% if @user.photo.attached? %>
+  <%= cl_image_tag @user.photo.key, height: 100, class: "avatar-large" %>
 <% end %>
 
 <h3>My Plants</h3>

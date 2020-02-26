@@ -5,7 +5,11 @@
     <h5 class="badge badge-secondary"><%= @plant.category %></h5>
     <div>
       <hr>
-      <img src="https://source.unsplash.com/random?profile/" width="30" height="30" class="rounded-circle float-left" alt="">
+      <% if @plant.user.photo.attached? %>
+        <%= cl_image_tag @plant.user.photo.key, class: "avatar rounded-circle avatar-32 float-left img-fluid" %>
+      <% else %>
+        <%= image_tag asset_path("place-holder-plant.jpg"), class: " avatar rounded-circle float-left img-fluid" %>
+      <% end %>
       <p class="card-text">&nbsp; &nbsp;<%= "#{@plant.user.first_name} #{@plant.user.last_name}"%></p>
     </div>
   </div>
