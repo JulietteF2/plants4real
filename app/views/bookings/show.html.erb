@@ -2,8 +2,11 @@
 <p>You have <%= @booking.plant.name %> Booked...</p>
 <p>From: <%= @booking.start_date.strftime("%d of %B, %Y") %></p>
 <p>Until: <%= @booking.end_date.strftime("%d of %B, %Y") %></p>
+<p>Booking Status: <%= @booking.status %></p>
 <!-- This shouldnt be eiditable if booking is confirmed -->
-<%=  link_to "Edit booking", edit_booking_path(@booking) %>
+<% unless @booking.status == "Approved" %>
+  <%=  link_to "Edit booking", edit_booking_path(@booking) %>
+<% end %>
 <br>
 <% if @booking.review %>
   <h4>Your Review</h4>

@@ -27,6 +27,7 @@ RSpec.describe "Review", :type => :review do
   # Hash for booking plant attributes to test user
   let(:valid_booking) do
     {
+      status: 'Pending',
       start_date: DateTime.parse("25-2-2020"),
       end_date: DateTime.parse("26-2-2020")
     }

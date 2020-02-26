@@ -1,12 +1,23 @@
 <h1><%= @user.first_name %></h1>
 
 <h3>My Plants</h3>
+<hr>
 <ul>
   <% @plants.each do |plant| %>
     <li>
       <p>Name: <%= link_to plant.name, plant_path(plant) %> | Price: <%= plant.price %></p>
       <p>Category: <%= plant.category %> | Location: <%= plant.location %></p>
     </li>
+    <p>Plant Bookings:</p>
+      <ol>
+        <% plant.bookings.each do |plant_booking| %>
+          <%= plant_booking.user.first_name %> |
+          <%= plant_booking.start_date %> - <%= plant_booking.end_date %> |
+          <%= plant_booking.status %>
+          <%= link_to "Edit Booking Status", edit_booking_path(plant_booking) %>
+        <% end %>
+      </ol>
+    <hr>
   <%end %>
 </ul>
 
