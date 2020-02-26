@@ -9,12 +9,15 @@ $headings-font-family:    $headers-font;
 $body-bg:                 $light-gray;
 $font-size-base: 1rem;
 
+$nice-green: #5BBD53;
+$nice-red: #FF5733;
+
 // Colors
 $body-color: $gray;
-$primary:    $blue;
+$primary:    $nice-green;
 $success:    $green;
 $info:       $yellow;
-$danger:     $red;
+$danger:     $nice-red;
 $warning:    $orange;
 
 // Buttons & inputs' radius
