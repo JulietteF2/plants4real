@@ -10,14 +10,31 @@
   <% @plants.each do |plant| %>
     <!-- Card will be contained in a 4 columns on large screens -->
     <div class="col-lg-4 mb-4">
-      <div class="card" style="width: auto;">
-        <!-- Card body section containing the plant name, description and a button to show cocktail -->
-          <h5 class="card-title"> <%= link_to plant.name, plant_path(plant) %> </h5>
-          <p class="card-text"> Description: <%= plant.description %> </p>
-          <p class="card-text"> Price: <%= plant.price %> </p>
-          <p class="card-text"> Location: <%= plant.location %> </p>
-          <p class="card-text"> Category: <%= plant.category %> </p>
-      </div>
+      <a href="<%= plant_path(plant) %>">
+        <div class="card" style="width: auto;">
+          <!-- Card body section containing the plant name, description and a button to show cocktail -->
+            <!-- Image placeholder section-->
+            <div>
+              <img src="https://source.unsplash.com/random?potplant" class="card-img-top"/>
+            </div>
+            <!-- Plant info section -->
+            <div class="card-body">
+              <h5 class="card-title"><%= plant.name %></h5>
+              <p class="card-text">
+                <span class="d-inline-block text-truncate" style="max-width: 300px;"><%= plant.description %></span>
+              </p>
+              <p class="card-text">
+                <i class="fas fa-map-marker-alt"></i>&nbsp;<%= plant.location %>
+              </p>
+              <p class="card-text">
+                  <strong>$ &nbsp;<%= plant.price %></strong>
+              </p>
+              <h5 class="card-text">
+                <span class="badge badge-secondary"> <%= plant.category %> </span>
+              </h5>
+            </div>
+        </div>
+      </a>
     </div>
   <% end %>
 <% end %>
