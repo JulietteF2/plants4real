@@ -1,8 +1,13 @@
 <!-- Title section row -->
 <div class="row">
-  <div class="col-12">
+  <div class="col-6">
     <h1><%= @plant.name %></h1>
   </div>
+  <div class="col-6 text-right">
+    <p class="btn btn-primary"><%= link_to "Edit Plant", edit_plant_path(@plant) %></p>
+    <p class="btn btn-danger"><%= link_to "Delete Plant", plant_path(@plant), method: :delete %></p>
+  </div>
+
 </div>
 
 <!-- Plant Info Row: 1. Two cards, one with plant details the otehr booking form 2. Plant image-->
