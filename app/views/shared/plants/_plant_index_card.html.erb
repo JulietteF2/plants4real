@@ -15,7 +15,8 @@
           <!-- Card body section containing the plant name, description and a button to show cocktail -->
             <!-- Image placeholder section-->
             <div>
-              <img src="https://source.unsplash.com/random?potplant" class="card-img-top"/>
+              <!-- <img src="https://source.unsplash.com/random?potplant" class="card-img-top"/> -->
+              <%= cl_image_tag plant.photo.key, class: " card-img-top img-fluid" %>
             </div>
             <!-- Plant info section -->
             <div class="card-body">
