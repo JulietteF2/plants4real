@@ -1,6 +1,5 @@
 require 'json'
 require 'open-uri'
-require 'byebug'
 
 puts 'making shiny happy people'
 
