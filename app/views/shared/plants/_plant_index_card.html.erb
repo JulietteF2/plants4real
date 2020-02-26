@@ -16,7 +16,11 @@
             <!-- Image placeholder section-->
             <div>
               <!-- <img src="https://source.unsplash.com/random?potplant" class="card-img-top"/> -->
-              <%= cl_image_tag plant.photo.key, class: " card-img-top img-fluid" %>
+              <% if plant.photo.attached? %>
+                <%= cl_image_tag plant.photo.key, class: " card-img-top img-fluid" %>
+              <% else %>
+                <%= image_tag asset_path("place-holder-plant.jpg"), class: " card-img-top img-fluid" %>
+              <% end %>
             </div>
             <!-- Plant info section -->
             <div class="card-body text-dark nounderline">
