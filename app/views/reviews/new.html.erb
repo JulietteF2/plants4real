@@ -1,7 +1,10 @@
 <h1>New review</h1>
+
+<% selectable_ratings = [1, 2, 3, 4, 5] %>
+
 <%= simple_form_for [@booking, @review] do |f| %>
   <%= f.input :content, placeholder: 'Write review here...' %>
-  <%= f.input :rating %>
+  <%= f.input :rating, collection: selectable_ratings %>
   <br>
   <%= f.submit %>
 <% end %>

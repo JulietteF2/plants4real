@@ -1,9 +1,11 @@
 <h1>Edit My Booking</h1>
 
+<% selectable_statuses = %w(Pending Approved Cancelled) %>
+
 <%= simple_form_for @booking do |f| %>
-  <%= f.input :start_date, as: :string, required: false, input_html: {class: "datepicker"} %>
-  <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker"} %>
-  <%= f.input :status, as: :hidden %>
+  <%= f.input :status, collection: selectable_statuses %>
+  <%= f.input :start_date, as: :hidden %>
+  <%= f.input :end_date, as: :hidden %>
   <%= f.input :plant_id, as: :hidden %>
   <%= f.input :total_price, as: :hidden %>
   <%= f.input :user_id, as: :hidden %>

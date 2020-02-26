@@ -1,13 +1,45 @@
-<h1>Hello, <%= @user.first_name %></h1>
+<h1><%= @user.first_name %></h1>
+<% if @user.photo.key %>
+  <%= cl_image_tag @user.photo.key, height: 100, alt: "alttext" %>
+<% end %>
 
-<div class="row">
-  <div class="col-12">
-    <h3>My Plants</h3>
-  </div>
-  <div class="row">
-    <%= render 'shared/plants/plant_index_card' %>
-  </div>
-</div>
+<h3>My Plants</h3>
+<hr>
+<ul>
+  <% @plants.each do |plant| %>
+    <li>
+      <p>Name: <%= link_to plant.name, plant_path(plant) %> | Price: <%= plant.price %></p>
+      <p>Category: <%= plant.category %> | Location: <%= plant.location %></p>
+    </li>
+    <p>Plant Bookings:</p>
+      <ol>
+        <% plant.bookings.each do |plant_booking| %>
+          <li>
+            <%= plant_booking.user.first_name %> |
+            <%= plant_booking.start_date.to_formatted_s(:long_ordinal) %> - <%= plant_booking.end_date.to_formatted_s(:long_ordinal) %> |
+            <%= plant_booking.status %>
+            <%= link_to "Edit Booking Status", edit_booking_path(plant_booking) %>
+          </li>
+        <% end %>
+      </ol>
+    <hr>
+  <%end %>
+</ul>
+
+<h3>My Bookings</h3>
+<ul>
+  <% @bookings.each do |booking| %>
+    <li>
+      <%= link_to "#{booking.plant.name} booking", booking_path(booking) %> |
+      <% if booking.review %>
+        <%= link_to "Edit review", edit_booking_review_path(booking) %> --
+        <%= link_to 'Delete review', review_path(booking.review), method: :delete %>
+      <% else %>
+        <%= link_to "Add review", new_booking_review_path(booking) %>
+      <% end %>
+    </li>
+  <%end %>
+</ul>
 
 <div class="row">
   <div class="col-12">

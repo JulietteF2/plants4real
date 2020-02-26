@@ -15,12 +15,6 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    # @booking.user = current_user
-    # @booking.plant_id = params[:plant_id]
-    # @booking.start_date = params[:booking_dates]["start_date"]
-    # @booking.end_date = params[:booking_dates]["end_date"]
-    # @booking.total_price = set_total_price
-    # @booking.status = 'Pending'
     if @booking.save!
       redirect_to booking_path(@booking)
     else
@@ -35,6 +29,7 @@ class BookingsController < ApplicationController
   end
 
   def update
+    @booking = Booking.find(params[:id])
     # /!\ we should only be able to edit status
     if @booking.update(booking_params)
       redirect_to booking_path(@booking)
