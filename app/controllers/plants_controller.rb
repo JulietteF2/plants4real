@@ -1,4 +1,5 @@
 class PlantsController < ApplicationController
+  before_action :set_plant, only: [:destroy, :show, :edit, :update]
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
@@ -6,7 +7,6 @@ class PlantsController < ApplicationController
   end
 
   def show
-    @plant = Plant.find(params[:id])
     @bookings = @plant.bookings
   end
 
@@ -25,9 +25,7 @@ class PlantsController < ApplicationController
     end
   end
 
-  def edit
-    @plant = Plant.find(params[:id])
-  end
+  def edit; end
 
   def update
     if @plant.update(plant_params)
@@ -38,7 +36,6 @@ class PlantsController < ApplicationController
   end
 
   def destroy
-    @plant = Plant.find(params[:id])
     @plant.destroy
 
     redirect_to user_path(current_user)
@@ -47,8 +44,11 @@ class PlantsController < ApplicationController
   private
 
   def booking_dates
-    raise
     redirect_to new_plant_booking_path
+  end
+
+  def set_plant
+    @plant = Plant.find(params[:id])
   end
 
   def plant_params
