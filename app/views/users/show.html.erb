@@ -1,27 +1,39 @@
 <h1><%= @user.first_name %></h1>
 
-<h3>My Plants</h3>
-<ul>
-  <% @plants.each do |plant| %>
-    <li>
-      <p>Name: <%= link_to plant.name, plant_path(plant) %> | Price: <%= plant.price %></p>
-      <p>Category: <%= plant.category %> | Location: <%= plant.location %></p>
-    </li>
-  <%end %>
-</ul>
+<div class="row">
+  <div class="col-12">
+    <h3>My Plants</h3>
+  </div>
+  <div class="row">
+  <%= render 'shared/plants/plant_index_card' %>
+  <!-- <ul>
+    <% @plants.each do |plant| %>
+      <li>
+        <p>Name: <%= link_to plant.name, plant_path(plant) %> | Price: <%= plant.price %></p>
+        <p>Category: <%= plant.category %> | Location: <%= plant.location %></p>
+      </li>
+    <%end %>
+  </ul> -->
+</div>
 
-<h3>My Bookings</h3>
-<ul>
-  <% @bookings.each do |booking| %>
-    <li>
-      <%= link_to "#{booking.plant.name} booking", booking_path(booking) %> |
-      <% if booking.review %>
-        <%= link_to "Edit review", edit_booking_review_path(booking) %> --
-        <%= link_to 'Delete review', review_path(booking.review), method: :delete %>
-      <% else %>
-        <%= link_to "Add review", new_booking_review_path(booking) %>
-      <% end %>
-    </li>
-  <%end %>
-</ul>
+<div class="col-12">
+  <h3>My Bookings</h3>
+</div>
 
+<div class="row">
+  <div class="col-12">
+    <ul>
+      <% @bookings.each do |booking| %>
+        <li>
+          <%= link_to "#{booking.plant.name} booking", booking_path(booking) %> |
+          <% if booking.review %>
+            <%= link_to "Edit review", edit_booking_review_path(booking) %> --
+            <%= link_to 'Delete review', review_path(booking.review), method: :delete %>
+          <% else %>
+            <%= link_to "Add review", new_booking_review_path(booking) %>
+          <% end %>
+        </li>
+      <%end %>
+    </ul>
+  </div>
+</div>
