@@ -1,36 +1,32 @@
-<h1><%= @user.first_name %></h1>
+<h1>Hello, <%= @user.first_name %></h1>
 
 <div class="row">
   <div class="col-12">
     <h3>My Plants</h3>
   </div>
   <div class="row">
-  <%= render 'shared/plants/plant_index_card' %>
-  <!-- <ul>
-    <% @plants.each do |plant| %>
-      <li>
-        <p>Name: <%= link_to plant.name, plant_path(plant) %> | Price: <%= plant.price %></p>
-        <p>Category: <%= plant.category %> | Location: <%= plant.location %></p>
-      </li>
-    <%end %>
-  </ul> -->
-</div>
-
-<div class="col-12">
-  <h3>My Bookings</h3>
+    <%= render 'shared/plants/plant_index_card' %>
+  </div>
 </div>
 
 <div class="row">
   <div class="col-12">
-    <ul>
+    <h3>My Bookings</h3>
+  </div>
+  <div class="col-12 mt-4">
+    <ul class="list-group list-group-flush">
       <% @bookings.each do |booking| %>
-        <li>
-          <%= link_to "#{booking.plant.name} booking", booking_path(booking) %> |
-          <% if booking.review %>
-            <%= link_to "Edit review", edit_booking_review_path(booking) %> --
-            <%= link_to 'Delete review', review_path(booking.review), method: :delete %>
-          <% else %>
-            <%= link_to "Add review", new_booking_review_path(booking) %>
+        <li class="list-group-item align-items-center d-flex justify-content-end mt-4">
+          <div class="col-6 text-left">
+            <%= link_to "#{booking.plant.name}", booking_path(booking) %>
+          </div>
+           <div class="col-6 text-right">
+              <% if booking.review %>
+                <p class="btn btn-primary m-0"><%= link_to "Edit review", edit_booking_review_path(booking), class: "text-white" %> </p>
+                <p class="btn btn-danger m-0"><%= link_to 'Delete review', review_path(booking.review), method: :delete, class: "text-white" %> </p>
+              <% else %>
+                <p class="btn btn-warning m-0"><%= link_to "Add review", new_booking_review_path(booking), class: "text-white" %></p>
+            </div>
           <% end %>
         </li>
       <%end %>
