@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
     @review.booking_id = params[:booking_id]
 
     if @review.save
-      redirect_to root_path # This should be changed to plant page
+      redirect_to user_path(@review.booking.user)
     else
       set_booking
       create_new_review
@@ -24,7 +24,7 @@ class ReviewsController < ApplicationController
   def update
     get_booking_review
     if @review.update(review_params)
-      redirect_to root_path
+      redirect_to user_path(@review.booking.user)
 
     else
       set_booking
@@ -36,7 +36,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.delete
-    redirect_to root_path # should this go to bookings plant page
+    redirect_to user_path(@review.booking.user)
   end
 
   private
