@@ -26,21 +26,6 @@
   <%end %>
 </ul>
 
-<h3>My Bookings</h3>
-<ul>
-  <% @bookings.each do |booking| %>
-    <li>
-      <%= link_to "#{booking.plant.name} booking", booking_path(booking) %> |
-      <% if booking.review %>
-        <%= link_to "Edit review", edit_booking_review_path(booking) %> --
-        <%= link_to 'Delete review', review_path(booking.review), method: :delete %>
-      <% else %>
-        <%= link_to "Add review", new_booking_review_path(booking) %>
-      <% end %>
-    </li>
-  <%end %>
-</ul>
-
 <div class="row">
   <div class="col-12">
     <h3>My Bookings</h3>
