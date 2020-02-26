@@ -4,8 +4,8 @@ require 'open-uri'
 puts 'making shiny happy people'
 
 user_1 = User.create!(email: "daniel.wolf@test.com", password: "password", first_name: "Daniel", last_name: "Wolf-Clark", details: "Likes gingerbread", avatar_url: "https://avatars3.githubusercontent.com/u/9943525?v=4")
-user_2 = User.create!(email: "testing7@test.fr", password: "password", first_name: "Juliette", last_name: "Ferrer", details: "Codes too fast", avatar_url: "https://avatars2.githubusercontent.com/u/54906060?v=4")
-user_3 = User.create!(email: "user@user.com", password: "password", first_name: "Nicholas", last_name: "Zeitoun", details: "Codes beautifully", avatar_url: "https://i1.kym-cdn.com/photos/images/original/000/581/408/902.jpg")
+user_2 = User.create!(email: "user@user.com", password: "password", first_name: "Juliette", last_name: "Ferrer", details: "Codes too fast", avatar_url: "https://avatars2.githubusercontent.com/u/54906060?v=4")
+user_3 = User.create!(email: "nicholas@test.com", password: "password", first_name: "Nicholas", last_name: "Zeitoun", details: "Codes beautifully", avatar_url: "https://i1.kym-cdn.com/photos/images/original/000/581/408/902.jpg")
 user_4 = User.create!(email: "ellen.zhuang@test.com", password: "password", first_name: "Ellen", last_name: "Zhuang", details: "Was sick on Monday", avatar_url: "http://3.bp.blogspot.com/-BBnC0TOysiQ/T3N0YGNlqOI/AAAAAAAACUI/XC35aPLNPQM/s1600/sunset+2.jpg")
 
 seeded_users = []

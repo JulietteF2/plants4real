@@ -16,7 +16,7 @@
         <% plant.bookings.each do |plant_booking| %>
           <li>
             <%= plant_booking.user.first_name %> |
-            <%= plant_booking.start_date %> - <%= plant_booking.end_date %> |
+            <%= plant_booking.start_date.to_formatted_s(:long_ordinal) %> - <%= plant_booking.end_date.to_formatted_s(:long_ordinal) %> |
             <%= plant_booking.status %>
             <%= link_to "Edit Booking Status", edit_booking_path(plant_booking) %>
           </li>
