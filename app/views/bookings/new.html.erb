@@ -1,19 +1,47 @@
-<h1>Confirm a new booking</h1>
+<!-- Title section row -->
+<div class="row text-center">
+  <div class="col-12">
+    <h1>Confirm a new booking</h1>
+  </div>
+</div>
 
-<ul>
-  <li>Plant for booking: <%= @booking.plant.name %></li>
-  <li>Plant owner <%= @booking.plant.user.first_name %></li>
-  <li>From: <%= @booking.start_date.strftime("%d of %B, %Y") %></li>
-  <li>Until: <%= @booking.end_date.strftime("%d of %B, %Y") %></li>
-  <li>Total price: <%= @booking.total_price %>$</li>
-</ul>
+<hr>
 
-<%= simple_form_for @booking do |f| %>
-  <%= f.input :start_date, as: :hidden %>
-  <%= f.input :end_date, as: :hidden %>
-  <%= f.input :status, as: :hidden %>
-  <%= f.input :plant_id, as: :hidden %>
-  <%= f.input :total_price, as: :hidden %>
-  <%= f.input :user_id, as: :hidden %>
-  <%= f.submit "Book", class: "btn btn-primary" %>
-<% end %>
+<div class="row d-flex justify-content-center">
+  <div class="col-6">
+    <div class="card h-100 p-4">
+      <h5 class="card-title">Payment Deets</h5>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title mt-2"><%= @booking.plant.name %></h5>
+      </div>
+      <div class="card-body">
+        <div>
+          <img src="https://source.unsplash.com/random?profile/" width="30" height="30" class="rounded-circle float-left" alt="">
+          <p class="card-text">&nbsp; &nbsp;Plant owner <%= @booking.plant.user.first_name %></p>
+        </div>
+        <div class="card border-secondary mt-4">
+          <div class="card-header">Booking period</div>
+          <div class="card-body text-secondary">
+            <p class="card-text">From: <%= @booking.start_date.strftime("%d of %B, %Y") %></p>
+            <p class="card-text">Until: <%= @booking.end_date.strftime("%d of %B, %Y") %></p>
+            <h5 class="card-title">Total price: <%= @booking.total_price %>$</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= simple_form_for @booking do |f| %>
+      <%= f.input :start_date, as: :hidden %>
+      <%= f.input :end_date, as: :hidden %>
+      <%= f.input :status, as: :hidden %>
+      <%= f.input :plant_id, as: :hidden %>
+      <%= f.input :total_price, as: :hidden %>
+      <%= f.input :user_id, as: :hidden %>
+      <%= f.submit "Book", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+

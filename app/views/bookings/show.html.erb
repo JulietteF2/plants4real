@@ -1,20 +1,41 @@
-<h1>Plant Booking</h1>
-<p>You have <%= @booking.plant.name %> Booked...</p>
-<p>From: <%= @booking.start_date.strftime("%d of %B, %Y") %></p>
-<p>Until: <%= @booking.end_date.strftime("%d of %B, %Y") %></p>
-<p>Booking Status: <%= @booking.status %></p>
-<!-- This shouldnt be eiditable if booking is confirmed -->
-<% unless @booking.status == "Approved" %>
-  <%=  link_to "Edit booking", edit_booking_path(@booking) %>
-<% end %>
-<br>
+<!-- Title section row -->
+<div class="row text-center">
+  <div class="col-12">
+    <h1>Plant Booking</h1>
+  </div>
+</div>
+
+<div class="row d-flex justify-content-center mt-4">
+  <div class="col-8">
+    <div class="card p-4">
+      <p>You have <%= @booking.plant.name %> Booked...</p>
+      <p>From: <%= @booking.start_date.strftime("%d of %B, %Y") %></p>
+      <p>Until: <%= @booking.end_date.strftime("%d of %B, %Y") %></p>
+      <p>Booking Status: <%= @booking.status %></p>
+      <!-- This shouldnt be eiditable if booking is confirmed -->
+      <% unless @booking.status == "Approved" %>
+        <%=  link_to "Edit booking", edit_booking_path(@booking) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row d-flex justify-content-center mt-4">
+  <div class="col-8">
+    <div class="card p-4">
 <% if @booking.review %>
   <h4>Your Review</h4>
-  <p> <%= @booking.review.rating %> Stars</p>
-  <p> <%= @booking.review.content %> Stars</p>
+  <p> <%= @booking.review.rating %>/5 Stars</p>
+  <p> <%= @booking.review.content %></p>
   <%= link_to "Edit review", edit_booking_review_path(@booking) %>
   <!-- Currently doesnt make sense from the link controller -->
   <%= link_to 'Delete review', review_path(@booking.review), method: :delete %>
 <% else %>
   <%= link_to "Add review", new_booking_review_path(@booking) %>
 <% end %>
+
+    </div>
+  </div>
+</div>
+
+<br>
