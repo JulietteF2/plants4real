@@ -7,8 +7,16 @@
     <p class="btn btn-primary"><%= link_to "Edit Plant", edit_plant_path(@plant), class: "text-white" %></p>
     <p class="btn btn-danger text-white"><%= link_to "Delete Plant", plant_path(@plant), method: :delete, class: "text-white" %></p>
   </div>
-
 </div>
+
+<!-- Plan Show map section -->
+<div
+  id="map"
+  style="width: 100%;
+  height: 600px;"
+  data-markers="<%= @markers.to_json %>"
+  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+></div>
 
 <!-- Plant Info Row: 1. Two cards, one with plant details the otehr booking form 2. Plant image-->
 <div class="row mt-4">
