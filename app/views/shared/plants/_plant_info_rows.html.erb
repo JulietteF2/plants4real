@@ -1,0 +1,16 @@
+<% @plants.each do |plant| %>
+<!-- Card will be contained in a 4 columns on large screens -->
+  <div class="row p-3">
+    <div class="col-6">
+      <h5 class="card-title"><%= plant.name %></h5>
+      <p class="card-text"><i class="fas fa-map-marker-alt"></i>&nbsp;<%= plant.location %></p>
+    </div>
+    <div class="card col-6 border-0">
+      <p class="card-text"><strong>$ &nbsp;<%= plant.price %></strong></p>
+      <h5 class="card-text">
+        <span class="badge badge-secondary"> <%= plant.category %> </span>
+      </h5>
+      <%= link_to "", plant_path(plant), class: "stretched-link" %>
+    </div>
+  </div>
+<% end %>

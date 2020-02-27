@@ -1,5 +1,5 @@
 <% if @plant.photo.attached? %>
-  <%= cl_image_tag @plant.photo.key, class: "img-fluid" %>
+  <%= cl_image_tag @plant.photo.key, class: "img-fluid brand-borders" %>
 <% else %>
-  <%= image_tag asset_path("place-holder-plant.jpg"), class: " card-img-top img-fluid" %>
+  <%= image_tag asset_path("place-holder-plant.jpg"), class: " card-img-top img-fluid brand-borders" %>
 <% end %>
