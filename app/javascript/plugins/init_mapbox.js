@@ -12,8 +12,18 @@ const buildMap = () => {
 
 const addMarkersToMap = (map, markers) => {
   markers.forEach((marker) => {
-    new mapboxgl.Marker()
+    const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
+
+    const element = document.createElement('div');
+    element.className = 'marker';
+    element.style.backgroundImage = `url('${marker.image_url}')`;
+    element.style.backgroundSize = 'contain';
+    element.style.width = '40px';
+    element.style.height = '40px';
+
+    new mapboxgl.Marker(element)
       .setLngLat([ marker.lng, marker.lat ])
+      .setPopup(popup) // maybe change to hover
       .addTo(map);
   });
 };
@@ -28,10 +38,13 @@ const initMapbox = () => {
   if (mapElement) {
     const map = buildMap();
     const markers = JSON.parse(mapElement.dataset.markers);
+
     addMarkersToMap(map, markers);
     fitMapToMarkers(map, markers);
   }
 };
 
+
 export { initMapbox };
+
 
