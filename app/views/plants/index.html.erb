@@ -1,22 +1,17 @@
-<!-- Title section row -->
-<div class="row">
-  <div class="col-12">
-    <h1>Look at these beautiful plants</h1>
-  </div>
-</div>
-
 <!-- Dynamically rendered Row changes when a user is signed in -->
-<!-- <div class="row">
-  <%# if user_signed_in? %>
-    <div class="col-12">
-      <p>You are signed in! ✅</p>
+<% if user_signed_in? %>
+  <div class="row">
+    <%= render 'shared/plants/plant_search_bar' %>
+  </div>
+<% else %>
+  <% if params[:query].present? %>
+    <div class="row">
+      <%= render 'shared/plants/plant_search_bar' %>
     </div>
-  <%# else %>
-    <div class="col-12">
-      <p>You are not signed in ⚠️</p>
-    </div>
-  <%# end %>
-</div> -->
+  <% else %>
+    <%= render 'shared/plants/plant_index_herobanner' %>
+  <% end %>
+<% end %>
 
 <!-- Row containing all the plants -->
 <div class="row">

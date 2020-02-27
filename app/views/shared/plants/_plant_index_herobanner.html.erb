@@ -1,0 +1,29 @@
+<!-- Hero banner -->
+<div class="banner text-center bg-light-grey">
+  <div class="row align-items-center">
+    <!-- Banner info -->
+    <div class="col-md-6">
+      <div class="p-4 text-left">
+        <h1 class="font-weight-normal">Look at these beautiful plants</h1>
+        <div class="mt-4">
+          <h5>Subtitle h5</h5>
+          <p class="font-weight-light">And an even wittier subheading to boot.    Jumpstart your marketing efforts with this example based on Apple’s   marketing pages.</p>
+        </div>
+      </div>
+      <!-- Banner search card -->
+      <div class="justify-content-center p-4">
+        <div class="card p-2 py-4">
+          <h3 class="pb-2">Find a plant</h3>
+          <%= render 'shared/plants/plant_index_search' %>
+        </div>
+        <%= link_to "Not logged in?", root_path %>
+      </div>
+    </div>
+    <!-- Banner image -->
+    <div class="col-md-6">
+      <div class="mt-n6">
+        <%= image_tag asset_path("hero-plant.png"), class: "w-100" %>
+      </div>
+    </div>
+  </div>
+</div>
