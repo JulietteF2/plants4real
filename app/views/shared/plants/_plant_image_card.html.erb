@@ -1,0 +1,19 @@
+  <% @plants.each do |plant| %>
+  <!-- Card will be contained in a 4 columns on large screens -->
+    <div class="card brand-borders border-0">
+      <% if plant.photo.attached? %>
+        <%= cl_image_tag plant.photo.key, class: " card-img-top img-fluid  brand-borders" %>
+      <% else %>
+        <%= image_tag asset_path("place-holder-plant.jpg"), class: " card-img-top img-fluid brand-borders" %>
+      <% end %>
+      <div class="card-img-overlay plant-card-image-overlay brand-borders text-white plant-card">
+        <h5 class="card-title"><%= plant.name %></h5>
+        <p class="card-text"><i class="fas fa-map-marker-alt"></i>&nbsp;<%= plant.location %></p>
+        <p class="card-text"><strong>$ &nbsp;<%= plant.price %></strong></p>
+        <h5 class="card-text">
+          <span class="badge badge-secondary"> <%= plant.category %> </span>
+        </h5>
+        <%= link_to "", plant_path(plant), class: "stretched-link" %>
+      </div>
+    </div>
+<% end %>

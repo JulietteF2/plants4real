@@ -1,32 +1,53 @@
-<h1><%= @user.first_name %></h1>
-<% if @user.photo.attached? %>
-  <%= cl_image_tag @user.photo.key, height: 100, class: "avatar-large" %>
-<% end %>
-
-<h3>My Plants</h3>
-<hr>
-<ul>
-  <% @plants.each do |plant| %>
-    <li>
-      <p>Name: <%= link_to plant.name, plant_path(plant) %> | Price: <%= plant.price %></p>
-      <p>Category: <%= plant.category %> | Location: <%= plant.location %></p>
-    </li>
-    <p>Plant Bookings:</p>
-      <ol>
-        <% plant.bookings.each do |plant_booking| %>
-          <li>
-            <%= plant_booking.user.first_name %> |
-            <%= plant_booking.start_date.to_formatted_s(:long_ordinal) %> - <%= plant_booking.end_date.to_formatted_s(:long_ordinal) %> |
-            <%= plant_booking.status %>
-            <%= link_to "Edit Booking Status", edit_booking_path(plant_booking) %>
-          </li>
-        <% end %>
-      </ol>
-    <hr>
-  <%end %>
-</ul>
+<div class="row mt-4 mb-4">
+  <div class="col-2">
+    <% if @user.photo.attached? %>
+      <%= cl_image_tag @user.photo.key, height: 100, class: "avatar-large" %>
+    <% end %>
+  </div>
+  <div class="col-10">
+    <h1><%= @user.first_name %></h1>
+    <div class="text-right">
+        <p class="btn btn-primary"><%= link_to "Edit Profile", edit_user_registration_path(@user), class: "text-white" %></p>
+      </div>
+  </div>
+</div>
 
 <div class="row">
+  <div class="col-md-3">
+    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">My Plants</a>
+      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">My Bookings</a>
+      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">My Profile</a>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="tab-content" id="v-pills-tabContent">
+      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+      <h3>My Plants</h3>
+    <hr>
+    <ul>
+      <% @plants.each do |plant| %>
+        <li>
+          <p>Name: <%= link_to plant.name, plant_path(plant) %> | Price: <%= plant.price %></p>
+          <p>Category: <%= plant.category %> | Location: <%= plant.location %></p>
+        </li>
+        <p>Plant Bookings:</p>
+          <ol>
+            <% plant.bookings.each do |plant_booking| %>
+              <li>
+                <%= plant_booking.user.first_name %> |
+                <%= plant_booking.start_date.to_formatted_s(:long_ordinal) %> - <%= plant_booking.end_date.to_formatted_s(:long_ordinal) %> |
+                <%= plant_booking.status %>
+                <%= link_to "Edit Booking Status", edit_booking_path(plant_booking) %>
+              </li>
+            <% end %>
+          </ol>
+        <hr>
+      <%end %>
+    </ul>
+      </div>
+      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+        <div class="row">
   <div class="col-12">
     <h3>My Bookings</h3>
   </div>
@@ -50,3 +71,11 @@
     </ul>
   </div>
 </div>
+      </div>
+      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+    </div>
+  </div>
+</div>
+
+
+
