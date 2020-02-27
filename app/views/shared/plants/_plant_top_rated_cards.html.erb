@@ -1,0 +1,14 @@
+<!-- Will show custom div if there are no plants in the database -->
+<% if @plants.empty? %>
+  <!-- Full column with empty message -->
+  <div class="col-12 vh-100 align-items-center pt-5">
+    <h3>book a plant now!</h3>
+    <%= link_to 'Add a Plant', new_plant_path %>
+  </div>
+<% else %>
+  <!-- Rendering a card for each plant -->
+  <h4 class="mt-5 font-weight-normal">Top Rated Plants</h4>
+  <div class="card-columns mt-4">
+    <%= render 'shared/plants/plant_info_cards' %>
+  </div>
+<% end %>
