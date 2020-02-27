@@ -8,6 +8,17 @@ class Plant < ApplicationRecord
   validates :price, presence: true, numericality: true
   validates :category, presence: true
 
+  include PgSearch::Model
+  pg_search_scope :search_full_text,
+    against: {
+      name: 'A',
+      description: 'B',
+      category: 'C'
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
+
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
 end

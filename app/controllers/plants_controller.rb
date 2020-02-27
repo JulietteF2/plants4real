@@ -5,7 +5,11 @@ class PlantsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @plants = Plant.all
+    if params[:query].present?
+      @plants = Plant.search_full_text(params[:query])
+    else
+      @plants = Plant.all
+    end
   end
 
 
@@ -45,7 +49,8 @@ class PlantsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
     if @plant.update(plant_params)
