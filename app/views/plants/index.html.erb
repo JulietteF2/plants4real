@@ -26,7 +26,7 @@
     <button id="geoform">Find plants close to you</button>
     <%= hidden_field_tag :queryCurrentLocation, params[:queryCurrentLocation], id: "current_location" %>
     <div style="display: none;">
-      <%= submit_tag "", id: "geosubmit"%>
+      <%= submit_tag "location", id: "geosubmit"%>
     </div>
   <% end %>
 </div>
