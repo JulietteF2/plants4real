@@ -5,6 +5,16 @@ class PlantsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
+    # refactor with a hash builder method (plant)
+    @markers = @plants.map do |plant|
+      {
+        lat: plant.latitude,
+        lng: plant.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { plant: plant }),
+        image_url: helpers.asset_url('plant.png')
+      }
+    end
+
     if params[:query].present?
       @plants = Plant.search_full_text(params[:query])
     else
@@ -12,25 +22,15 @@ class PlantsController < ApplicationController
     end
   end
 
-
-  # Reference code in case we need a map on a search view
-
-  # def index
-  #   @flats = Flat.geocoded #returns flats with coordinates
-  #   @markers = @flats.map do |flat|
-  #     {
-  #       lat: flat.latitude,
-  #       lng: flat.longitude
-  #     }
-  #   end
-  # end
-
   def show
     @bookings = @plant.bookings
 
+    # refactor with a hash builder method (plant)
     @markers =[{
         lat: @plant.latitude,
-        lng: @plant.longitude
+        lng: @plant.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { plant: @plant }),
+        image_url: helpers.asset_url('plant.png')
       }]
   end
 
