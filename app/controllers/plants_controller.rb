@@ -1,5 +1,7 @@
 class PlantsController < ApplicationController
+  before_action :geocode, only: [:index, :show]
   before_action :set_plant, only: [:destroy, :show, :edit, :update]
+
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
@@ -10,8 +12,26 @@ class PlantsController < ApplicationController
     end
   end
 
+
+  # Reference code in case we need a map on a search view
+
+  # def index
+  #   @flats = Flat.geocoded #returns flats with coordinates
+  #   @markers = @flats.map do |flat|
+  #     {
+  #       lat: flat.latitude,
+  #       lng: flat.longitude
+  #     }
+  #   end
+  # end
+
   def show
     @bookings = @plant.bookings
+
+    @markers =[{
+        lat: @plant.latitude,
+        lng: @plant.longitude
+      }]
   end
 
   def new
@@ -47,6 +67,10 @@ class PlantsController < ApplicationController
   end
 
   private
+
+  def geocode
+    @plants = Plant.geocoded
+  end
 
   def booking_dates
     redirect_to new_plant_booking_path
