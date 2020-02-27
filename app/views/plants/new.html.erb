@@ -1,2 +1,12 @@
-<h1>Create a new plant!</h1>
-<%= render 'shared/plants/plant_form' %>
+<div class="row ">
+  <div class="col-md-6 grey-obloid p-5">
+    <h1>List a new plant!</h1>
+    <div class="banner-image p-5">
+      <%= image_tag asset_path("hero-plant.png"), class: "banner-image" %>
+    </div>
+  </div>
+  <div class="col-md-6 p-5">
+    <%= render 'shared/plants/plant_form' %>
+  </div>
+</div>
+

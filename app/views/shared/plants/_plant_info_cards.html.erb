@@ -1,0 +1,31 @@
+<% @plants[0...3].each do |plant| %>
+  <!-- Card will be contained in a 4 columns on large screens -->
+  <!-- <div class="col-md-4 mb-4 mt-5"> -->
+    <a href="<%= plant_path(plant) %>">
+      <div class="card border-0" style="width: auto;">
+        <!-- Card body section containing the plant name, description and a button to show cocktail -->
+          <!-- Image placeholder section-->
+          <div>
+            <!-- <img src="https://source.unsplash.com/random?potplant" class="card-img-top"/> -->
+            <% if plant.photo.attached? %>
+              <%= cl_image_tag plant.photo.key, class: "card-img brand-borders" %>
+            <% else %>
+              <%= image_tag asset_path("place-holder-plant.jpg"), class: "img-fluid" %>
+            <% end %>
+          </div>
+          <!-- Plant info section -->
+          <div class="card-body text-dark nounderline">
+            <h5 class="card-title"><%= plant.name %></h5>
+            <p class="card-text">
+              <i class="fas fa-map-marker-alt"></i>&nbsp;<%= plant.location %>
+            </p>
+            <p class="card-text">
+                <strong>$ &nbsp;<%= plant.price %></strong>
+            </p>
+            <h5 class="card-text">
+              <span class="badge badge-secondary"> <%= plant.category %> </span>
+            </h5>
+          </div>
+      </div>
+    </a>
+<% end %>
