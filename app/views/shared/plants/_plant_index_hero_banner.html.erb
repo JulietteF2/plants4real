@@ -1,0 +1,33 @@
+<!-- Hero banner row: 1. Title, text and search bar 2. Banner Image -->
+<div class="row grey-obloid d-flex align-items-center pt-4">
+  <!-- 1. Banner Title h1 -->
+  <div class="col-md-6 justify-content-center p-4">
+    <!-- Title -->
+    <div class="text-left p-4">
+      <h1>Find your green. All the best plants in one place… </h1>
+    </div>
+    <div class="justify-content-center p-4">
+      <div class="mt-4">
+        <h5>Subtitle h5</h5>
+        <p class="font-weight-light">And an even wittier subheading to boot.    Jumpstart your marketing efforts with this example based on Apple’s   marketing pages.</p>
+      </div>
+    </div>
+    <!-- Banner search card -->
+    <div class="justify-content-center p-2">
+      <div class="card pb-5 pt-5 border-0 shadow-lg text-center brand-borders">
+        <h3 class="pb-2">Find a plant</h3>
+        <%= render 'shared/plants/plant_index_search' %>
+      </div>
+      <div class="mt-4 d-flex justify-content-center w-100">
+        <%= link_to "Search by location", "/#map" %>
+      </div>
+    </div>
+  </div>
+  <!-- 2. Banner image -->
+  <div class="col-md-6 mb-n3">
+    <div class="banner-image">
+      <%= image_tag asset_path("hero-plant.png"), class: "banner-image" %>
+    </div>
+  </div>
+</div>
+

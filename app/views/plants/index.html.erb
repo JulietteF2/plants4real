@@ -9,32 +9,63 @@
       <%= render 'shared/plants/plant_search_bar' %>
     </div>
   <% else %>
-    <%= render 'shared/plants/plant_index_herobanner' %>
+    <%= render 'shared/plants/plant_index_hero_banner' %>
   <% end %>
 <% end %>
 
 <!-- Row containing all the plants -->
 <div class="row">
-  <%= render 'shared/plants/plant_index_card' %>
+  <%= render 'shared/plants/plant_top_rated_cards' %>
+</div>
+
+<hr>
+
+<!-- Row containing all the plants -->
+<div class="row">
+  <%= render 'shared/plants/plant_search_cards' %>
 </div>
 
 <!-- Plan Show map section -->
+  <h4 class="mt-5 font-weight-normal">Find plants near me...</h4>
 
-<!-- Invisible form for user geolocation -->
-<div class="col-12">
-  <%= form_tag plants_path, method: :get do %>
-    <button id="geoform">Find plants close to you</button>
-    <%= hidden_field_tag :queryCurrentLocation, params[:queryCurrentLocation], id: "current_location" %>
-    <div style="display: none;">
-      <%= submit_tag "location", id: "geosubmit"%>
+<div class="row">
+  <!-- plants -->
+  <div class="col-md-6 mt-4">
+    <div class="my-4 w-100 p-4">
+      <%= form_tag plants_path, method: :get do %>
+        <button class="btn btn-primary" id="geoform">Find plants close to you</button>
+        <%= hidden_field_tag :queryCurrentLocation, params[:queryCurrentLocation], id: "current_location" %>
+        <div style="display: none;">
+          <%= submit_tag "location", id: "geosubmit"%>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+
+    <div class="plant-location-box brand-borders shadow-lg p-4">
+        <!-- Will show custom div if there are no plants in the database -->
+        <div>
+          <% if @plants.empty? %>
+            <!-- Full column with empty message -->
+              <h3>No plants found... 🌱</h3>
+              <%= link_to 'Add a Plant', new_plant_path %>
+          <% else %>
+            <!-- Rendering a card for each plant -->
+            <%= render 'shared/plants/plant_info_rows' %>
+          <% end %>
+        </div>
+      </div>
+  </div>
+  <!-- map -->
+  <div class="col-md-6 mt-4">
+    <div class="brand-borders"
+    id="map"
+    style="width: 100%;
+    height: 600px;"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+    ></div>
+  </div>
 </div>
 
-<div
-id="map"
-style="width: 100%;
-height: 600px;"
-data-markers="<%= @markers.to_json %>"
-data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-></div>
+
+<!-- Invisible form for user geolocation -->

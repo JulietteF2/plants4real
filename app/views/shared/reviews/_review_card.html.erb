@@ -1,7 +1,7 @@
  <!-- Iterating through all the plants bookings -->
 <% @bookings.each do |booking| %>
    <% if booking.review %>
-    <div class="card p-4">
+    <div class="card p-4 mt-4">
       <span>
         <% booking.review.rating.times do %>
           <i class="fas fa-star"></i>
@@ -10,6 +10,5 @@
       <p>Comment: <%= booking.review.content %></p>
     </div>
   <% else %>
-    <p>This plant has no reviews...</p>
   <% end %>
 <% end %>
