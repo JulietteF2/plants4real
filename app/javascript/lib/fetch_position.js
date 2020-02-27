@@ -5,6 +5,7 @@ const fetch_position = () => {
 
   if (trigger_button) {
     trigger_button.addEventListener("click", (event) => {
+      event.preventDefault();
       navigator.geolocation.getCurrentPosition((data) => {
         const hidden_tag = document.getElementById("current_location");
         hidden_tag.value = `${[data.coords.latitude, data.coords.longitude]}`;
