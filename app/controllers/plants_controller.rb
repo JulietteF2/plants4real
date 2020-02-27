@@ -7,12 +7,7 @@ class PlantsController < ApplicationController
   def index
     # refactor with a hash builder method (plant)
     @markers = @plants.map do |plant|
-      {
-        lat: plant.latitude,
-        lng: plant.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { plant: plant }),
-        image_url: helpers.asset_url('plant.png')
-      }
+      plant_hash(plant)
     end
 
     if params[:query].present?
@@ -26,12 +21,7 @@ class PlantsController < ApplicationController
     @bookings = @plant.bookings
 
     # refactor with a hash builder method (plant)
-    @markers =[{
-        lat: @plant.latitude,
-        lng: @plant.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { plant: @plant }),
-        image_url: helpers.asset_url('plant.png')
-      }]
+    @markers =[plant_hash(@plant)]
   end
 
   def new
@@ -67,6 +57,14 @@ class PlantsController < ApplicationController
   end
 
   private
+
+  def plant_hash(plant)
+    { lat: plant.latitude,
+      lng: plant.longitude,
+      infoWindow: render_to_string(partial: "info_window", locals: { plant: plant }),
+      image_url: helpers.asset_url('plant.png')
+    }
+  end
 
   def geocode
     @plants = Plant.geocoded
