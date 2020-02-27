@@ -7,4 +7,15 @@ class Plant < ApplicationRecord
   validates :location, presence: true
   validates :price, presence: true, numericality: true
   validates :category, presence: true
+
+  include PgSearch::Model
+  pg_search_scope :search_full_text,
+    against: {
+      name: 'A',
+      description: 'B',
+      category: 'C'
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
 end
