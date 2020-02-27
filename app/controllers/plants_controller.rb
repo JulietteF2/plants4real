@@ -5,22 +5,24 @@ class PlantsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    # refactor with a hash builder method (plant)
-    @markers = @plants.map do |plant|
-      plant_hash(plant)
-    end
-
-    if params[:query].present?
+    if params[:queryCurrentLocation].present?
+      coordinates = params[:queryCurrentLocation].split(",").map do |coordinate|
+        coordinate.to_f
+      end
+      @plants = Plant.near(coordinates)
+    elsif params[:query].present?
       @plants = Plant.search_full_text(params[:query])
     else
       @plants = Plant.all
+    end
+
+    @markers = @plants.map do |plant|
+      plant_hash(plant)
     end
   end
 
   def show
     @bookings = @plant.bookings
-
-    # refactor with a hash builder method (plant)
     @markers =[plant_hash(@plant)]
   end
 
