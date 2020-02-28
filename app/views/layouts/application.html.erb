@@ -17,12 +17,14 @@
     <%= favicon_link_tag asset_path('logo.svg') %>
   </head>
   <body>
-    <!-- Devise authentication alerts and notices -->
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
 
-    <!-- header -->
+    <!-- Nav bar -->
     <%= render 'shared/navbar' %>
+
+    <!-- Devise authentication alerts and notices -->
+    <div class="flash">
+      <%= render 'shared/flashes' %>
+    </div>
 
     <!-- Embedded ruby views -->
     <div class="container mt-5 mb-5">
