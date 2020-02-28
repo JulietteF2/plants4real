@@ -25,15 +25,15 @@
   <%= render 'shared/plants/plant_search_cards' %>
 </div>
 
-<!-- Plan Show map section -->
-<div class="row mt-5">
+<!-- Plant Show map section -->
+<div class="row mt-5 align-items-center justify-content-between">
   <div class="col-md-6 mt-4">
-    <h4 class="font-weight-normal">Find plants near me...</h4>
+    <h4 class="font-weight-normal">Find Plants Near Me...</h4>
   </div>
 
   <div class="col-md-6 mt-4">
     <%= form_tag plants_path, method: :get do %>
-      <button class="btn btn-primary text-white" id="geoform">Find plants close to you</button>
+      <button class="btn btn-primary text-white px-4" id="geoform">Find plants nearby</button>
       <%= hidden_field_tag :queryCurrentLocation, params[:queryCurrentLocation], id: "current_location" %>
       <div style="display: none;">
         <%= submit_tag "location", id: "geosubmit"%>
@@ -65,7 +65,7 @@
     <div class="brand-borders"
     id="map"
     style="width: 100%;
-    height: 600px;"
+    height: 500px;"
     data-markers="<%= @markers.to_json %>"
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
     ></div>
