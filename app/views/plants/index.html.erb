@@ -26,21 +26,26 @@
 </div>
 
 <!-- Plan Show map section -->
-  <h4 class="mt-5 font-weight-normal">Find plants near me...</h4>
+<div class="row mt-5">
+  <div class="col-md-6 mt-4">
+    <h4 class="font-weight-normal">Find plants near me...</h4>
+  </div>
+
+  <div class="col-md-6 mt-4">
+    <%= form_tag plants_path, method: :get do %>
+      <button class="btn btn-primary text-white" id="geoform">Find plants close to you</button>
+      <%= hidden_field_tag :queryCurrentLocation, params[:queryCurrentLocation], id: "current_location" %>
+      <div style="display: none;">
+        <%= submit_tag "location", id: "geosubmit"%>
+      </div>
+    <% end %>
+  </div>
+</div>
+
 
 <div class="row">
   <!-- plants -->
   <div class="col-md-6 mt-4">
-    <div class="my-4 w-100 p-4">
-      <%= form_tag plants_path, method: :get do %>
-        <button class="btn btn-primary" id="geoform">Find plants close to you</button>
-        <%= hidden_field_tag :queryCurrentLocation, params[:queryCurrentLocation], id: "current_location" %>
-        <div style="display: none;">
-          <%= submit_tag "location", id: "geosubmit"%>
-        </div>
-      <% end %>
-    </div>
-
     <div class="plant-location-box brand-borders shadow-lg p-4">
         <!-- Will show custom div if there are no plants in the database -->
         <div>

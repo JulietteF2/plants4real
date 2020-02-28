@@ -1,0 +1,45 @@
+<!-- Will show custom div if there are no plants in the database -->
+<% if @plants.empty? %>
+  <!-- Full column with empty message -->
+  <div class="col-12 vh-100">
+    <h3>No plants here... 🌱</h3>
+    <%= link_to 'Add a Plant', new_plant_path %>
+  </div>
+<% else %>
+  <!-- Rendering a card for each plant -->
+  <% @plants.each do |plant| %>
+    <!-- Card will be contained in a 4 columns on large screens -->
+    <div class="col-lg-4 mb-4">
+      <a href="<%= plant_path(plant) %>">
+        <div class="card index-card" style="width: auto;">
+          <!-- Card body section containing the plant name, description and a button to show cocktail -->
+            <!-- Image placeholder section-->
+            <div>
+              <!-- <img src="https://source.unsplash.com/random?potplant" class="card-img-top"/> -->
+              <% if plant.photo.attached? %>
+                <%= cl_image_tag plant.photo.key, class: " card-img-top img-fluid" %>
+              <% else %>
+                <%= image_tag asset_path("place-holder-plant.jpg"), class: " card-img-top img-fluid" %>
+              <% end %>
+            </div>
+            <!-- Plant info section -->
+            <div class="card-body text-dark nounderline">
+              <h5 class="card-title"><%= plant.name %></h5>
+              <p class="card-text">
+                <span class="d-inline-block text-truncate" style="max-width: 300px;"><%= plant.description %></span>
+              </p>
+              <p class="card-text">
+                <i class="fas fa-map-marker-alt"></i>&nbsp;<%= plant.location %>
+              </p>
+              <p class="card-text">
+                  <strong>$ &nbsp;<%= plant.price %></strong>
+              </p>
+              <h5 class="card-text">
+                <span class="badge badge-secondary"> <%= plant.category %> </span>
+              </h5>
+            </div>
+        </div>
+      </a>
+    </div>
+  <% end %>
+<% end %>

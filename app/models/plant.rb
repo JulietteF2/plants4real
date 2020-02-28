@@ -6,7 +6,7 @@ class Plant < ApplicationRecord
   validates :name, presence: true
   validates :location, presence: true
   validates :price, presence: true, numericality: true
-  validates :category, presence: true
+  validates :category, presence: true, inclusion: { in: %w(Indoor House Office Outdoor Carnivorous Flower) }
 
   include PgSearch::Model
   pg_search_scope :search_full_text,

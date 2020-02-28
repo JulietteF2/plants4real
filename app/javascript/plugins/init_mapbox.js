@@ -1,4 +1,5 @@
 import mapboxgl from 'mapbox-gl';
+import { randomTilt, plantHover } from '../lib/plant_tilt';
 
 const mapElement = document.getElementById('map');
 
@@ -31,7 +32,7 @@ const addMarkersToMap = (map, markers) => {
 const fitMapToMarkers = (map, markers) => {
   const bounds = new mapboxgl.LngLatBounds();
   markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
-  map.fitBounds(bounds, { padding: 200, maxZoom: 15, duration: 2000 });
+  map.fitBounds(bounds, { padding: 85, maxZoom: 15, duration: 2000 });
 };
 
 const initMapbox = () => {
@@ -41,6 +42,9 @@ const initMapbox = () => {
 
     addMarkersToMap(map, markers);
     fitMapToMarkers(map, markers);
+
+    // plant marker moves when its card or its marker is hovered
+    plantHover();
   }
 };
 

@@ -1,20 +1,36 @@
-<h2>Log in</h2>
+<div class="row ">
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+  <div class="col-md-6 p-5">
+    <h2>Log in</h2>
+
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="form-inputs">
+          <%= f.input :email,
+                      required: false,
+                      autofocus: true,
+                      input_html: { autocomplete: "email" } %>
+          <%= f.input :password,
+                      required: false,
+                      input_html: { autocomplete: "current-password" } %>
+          <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        </div>
+
+        <div class="col-12 btn btn-primary form-actions">
+          <%= f.button :submit, "Log in", class: "text-white" %>
+        </div>
+      <% end %>
+
+      <!-- Space between button and devise Sign up / Forgot Password Links -->
+      <br>
+      <%= render "devise/shared/links" %>
+   </div>
+
+
+  <div class="col-md-6 grey-obloid p-5">
+    <div class="banner-image p-5">
+      <%= image_tag asset_path("hero-plant.png"), class: "banner-image" %>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+</div>

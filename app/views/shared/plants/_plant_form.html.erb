@@ -1,12 +1,15 @@
+<% selectable_categories =  %w(Indoor House Office Outdoor Carnivorous Flower) %>
+
 <div class="card p-5 shadow-lg mt-4 brand-borders border-0">
   <%= simple_form_for @plant do |f| %>
     <%= f.input :name, placeholder: 'Plant name...' %>
     <%= f.input :description %>
     <%= f.input :location %>
     <%= f.input :price %>
-    <%= f.input :category %>
+    <%= f.input :category, collection: selectable_categories %>
     <%= f.input :photo, as: :file %>
     <br>
     <%= f.submit 'submit', class: "btn btn-primary text-white" %>
   <% end %>
 </div>
+
