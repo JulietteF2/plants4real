@@ -46,13 +46,13 @@
     "price":"115.00",
     "category":"House",
     "image_url":"https://i.pinimg.com/564x/01/3a/74/013a74b738888daa1abc3a1d62318619.jpg",
-    "user_first_name":"Juliette",
+    "user_first_name":"Daniel",
     "bookings":[
       {
         "start_date": "02.05.2020",
         "end_date": "07.05.2020",
         "status": "Pending",
-        "first_name": "Daniel"
+        "first_name": "Ellen"
       },
       {
         "start_date": "02.06.2020",
