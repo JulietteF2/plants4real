@@ -111,5 +111,80 @@
     "category":"House",
     "image_url":"https://i.pinimg.com/564x/4a/5b/ad/4a5bad3ba89679e6d2b28941916ba4a9.jpg",
     "user_first_name":"Daniel"
+  },
+  // New plants for a wider map
+  {
+    "name":"Snake Surfy Plant",
+    "description":"This snake plant is all about catching waves and sunbathing after its surf sessions. Known for being a bit high maintenance, it will though flourish beautifully if you just let it enjoy a nice ocean view.",
+    "location":"Sydney, New South Wales, Australia",
+    "price":"75.00",
+    "category":"Outdoor",
+    "image_url":"https://i.pinimg.com/564x/68/ec/d7/68ecd7fd1bdf9d2ea6ae4aa95f1654e9.jpg",
+    "user_first_name":"Nicholas",
+    "bookings":[
+      {
+        "start_date": "03.01.2020",
+        "end_date": "02.02.2020",
+        "status": "Approved",
+        "first_name": "Juliette",
+        "review":[
+          {
+            "content": "Serving you surf-life realness",
+            "rating": "4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name":"Koala Snake Plant",
+    "description":"The koala or, inaccurately, koala bear is an arboreal herbivorous marsupial native to Australia. It is the only extant representative of the family Phascolarctidae and its closest living relatives are the wombats, which comprise the family Vombatidae. The koala is found in coastal areas of the mainland's eastern and southern regions, inhabiting Queensland, New South Wales, Victoria, and South Australia.",
+    "location":"Torquay, Victoria, Australia",
+    "price":"32.00",
+    "category":"Flower",
+    "image_url":"https://i.pinimg.com/564x/db/90/66/db9066aecfd25d7accc84ff81f402c84.jpg",
+    "user_first_name":"Ellen",
+    "bookings":[
+      {
+        "start_date": "15.01.2020",
+        "end_date": "29.01.2020",
+        "status": "Approved",
+        "first_name": "Daniel",
+        "review":[
+          {
+            "content": "So fluffy, so cuddly",
+            "rating": "5"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name":"Far West Snake Plant",
+    "description":"Home to highly successful breeding programs for orangutans and giraffes, this snake plant from Perth participates in captive breeding and reintroduction efforts for a number of Western Australian species, including the numbat, the dibbler, the chuditch, and the western swamp tortoise.",
+    "location":"Adelaide, South Australia, Australia",
+    "price":"43.00",
+    "category":"Carnivorous",
+    "image_url":"https://i.pinimg.com/474x/d4/53/16/d453167c0ab42aa672270c42d579c939.jpg",
+    "user_first_name":"Ellen"
+  },
+
+  {
+    "name":"Silver Drop Plant",
+    "description":"The eucalyptus silver drop plant (Eucalyptus gunnii), sometimes called cider gum, is actually a tree native to Tasmania. It has round, silver leaves and attractive bark that ranges from gray to a combination of orange and pink. White flowers appear on the tree during spring and summer.",
+    "location":"Hobart, Tasmania, Australia",
+    "price":"27.00",
+    "category":"House",
+    "image_url":"https://i.pinimg.com/474x/ba/1b/87/ba1b87dd66756a73e461eb43fc803000.jpg",
+    "user_first_name":"Juliette"
+  },
+  {
+    "name":"Will Bite Plant",
+    "description":"Careful with that one, you might loose a finger. Great to catch flies and mosquitoes though... Book at your own risks.",
+    "location":"Griffith, New South Wales, Australia",
+    "price":"34.00",
+    "category":"Carnivorous",
+    "image_url":"https://i.pinimg.com/474x/9d/0f/ba/9d0fba9724461a8692f6ddd6e30feeca.jpg",
+    "user_first_name":"Juliette"
   }
 ]}
