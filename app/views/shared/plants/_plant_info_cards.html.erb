@@ -10,7 +10,7 @@
             <% if plant.photo.attached? %>
               <%= cl_image_tag plant.photo.key, class: "card-img brand-borders" %>
             <% else %>
-              <%= image_tag asset_path("place-holder-plant.jpg"), class: "img-fluid" %>
+              <%= image_tag asset_path("place-holder-plant.jpg"), class: "img-fluid brand-borders" %>
             <% end %>
           </div>
           <!-- Plant info section -->
