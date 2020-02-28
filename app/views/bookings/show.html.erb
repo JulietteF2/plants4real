@@ -21,21 +21,21 @@
       <div class="card border-success mb-3">
         <div class="card-body text-success">
           <h5 class="card-title">Booking Confirmed ✅</h5>
-          <p class="card-text">Nice! <%= @booking.user.first_name %> has approved your booking.</p>
+          <p class="card-text">Nice! <%= @booking.plant.user.first_name %> has approved your booking.</p>
         </div>
       </div>
       <% when "Pending" %>
       <div class="card border-warning mb-3">
         <div class="card-body text-warning">
           <h5 class="card-title">Booking Pending Confirmation 🌱</h5>
-          <p class="card-text">Hello! Waiting for <%= @booking.user.first_name %> to approved your booking.</p>
+          <p class="card-text">Hello! Waiting for <%= @booking.plant.user.first_name %> to approved your booking.</p>
         </div>
       </div>
       <% when "Cancelled" %>
       <div class="card border-danger mb-3">
         <div class="card-body text-danger">
           <h5 class="card-title">Booking Cancelled ⚠️</h5>
-          <p class="card-text">Oh no! <%= @booking.user.first_name %> has cancelled your booking.</p>
+          <p class="card-text">Oh no! <%= @booking.plant.user.first_name %> has cancelled your booking.</p>
         </div>
       </div>
     <% end %>
