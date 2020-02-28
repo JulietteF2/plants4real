@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
     @review.booking_id = params[:booking_id]
 
     if @review.save
-      redirect_to user_path(@review.booking.user)
+      redirect_to booking_path(@review.booking)
     else
       set_booking
       create_new_review
@@ -24,7 +24,7 @@ class ReviewsController < ApplicationController
   def update
     get_booking_review
     if @review.update(review_params)
-      redirect_to user_path(@review.booking.user)
+      redirect_to booking_path(@review.booking)
 
     else
       set_booking
