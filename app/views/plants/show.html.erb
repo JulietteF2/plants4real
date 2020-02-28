@@ -9,10 +9,20 @@
         <%= render 'shared/plants/plant_description_card' %>
         <h3>Plant reviews</h3>
       <!-- Card containing review of a booking -->
-      <%= render 'shared/reviews/review_card' %>
+      <% plant_reviews = [] %>
+      <% @plant.bookings.each do |booking| %>
+        <% if booking.review.present? %>
+          <% plant_reviews << booking.review %>
+        <% end %>
+      <% end %>
+      <% if plant_reviews.empty? %>
+        This plant had no reviews yet... 🌱
+      <% else %>
+        <%= render 'shared/reviews/review_card' %>
+      <% end %>
       <!-- Plan Show map section -->
       <div class="mt-4">
-        <h3>Plant reviews</h3>
+        <h3>Plant Location</h3>
         <div class="mt-4 brand-borders"
           id="map"
           style="width: 100%;

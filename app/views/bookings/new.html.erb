@@ -20,7 +20,11 @@
       </div>
       <div class="card-body">
         <div>
-          <img src="https://source.unsplash.com/random?profile/" width="30" height="30" class="rounded-circle float-left" alt="">
+          <% if @plant.user.photo.attached? %>
+            <%= cl_image_tag @plant.user.photo.key, class: "avatar rounded-circle avatar-32 float-left img-fluid" %>
+          <% else %>
+            <%= image_tag asset_path("place-holder-plant.jpg"), class: " avatar rounded-circle float-left img-fluid" %>
+          <% end %>
           <p class="card-text">&nbsp; &nbsp;Plant owner <%= @booking.plant.user.first_name %></p>
         </div>
         <div class="card border-secondary mt-4">
