@@ -20,8 +20,8 @@
       </div>
       <div class="card-body">
         <div>
-          <% if @plant.user.photo.attached? %>
-            <%= cl_image_tag @plant.user.photo.key, class: "avatar rounded-circle avatar-32 float-left img-fluid" %>
+          <% if @booking.plant.user.photo.attached? %>
+            <%= cl_image_tag @booking.plant.user.photo.key, class: "avatar rounded-circle avatar-32 float-left img-fluid" %>
           <% else %>
             <%= image_tag asset_path("place-holder-plant.jpg"), class: " avatar rounded-circle float-left img-fluid" %>
           <% end %>
