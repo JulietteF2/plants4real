@@ -1,5 +1,16 @@
-<!-- Plant Information -->
+<!-- Plant information -->
+<div class="card-body pl-4">
+  <h5 class="card-title"><%= link_to plant.name, plant_path(plant) %></h5>
+  <p class="card-title"><i class="fas fa-map-marker-alt"></i>&nbsp;<%= plant.location %> | $<%= sprintf("%.2f", plant.price) %></p>
+  <p class="card-text"><%= plant.description %></p>
+  <p class="card-text"><small class="text-muted">Uploaded <%=  plant.created_at.to_formatted_s(:long_ordinal) %></small></p>
+  <p><%= link_to "Edit Plant", edit_plant_path(plant) %> | <%= link_to "Delete Plant", plant_path(plant), method: :delete, class: "delete" %></p>
+</div>
 
+<!-- Bookings title -->
+<div class="card pl-4 border-0">
+  <h5 class="card-title">Plant Bookings:</h5>
+</div>
 
 <!-- Plant's bookings -->
 <% plant.bookings.each do |plant_booking| %>
@@ -20,7 +31,7 @@
       <div class="row">
         <div class="col-6">
           <p class="card-text">Booking by: <%= plant_booking.user.first_name %></p>
-          <h5 class="card-title">$<%= plant_booking.total_price %>0</h5>
+          <h5 class="card-title">$<%= sprintf("%.2f", plant_booking.total_price) %></h5>
         </div>
         <div class="col-6">
           <h5 class="card-title text-<%= booking_status %> text-right">Booking is: <%= plant_booking.status %></h5>

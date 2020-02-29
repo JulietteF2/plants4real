@@ -72,17 +72,8 @@
         <div class="row">
           <div class="col-md-6">
             <div class="card border-0">
-              <span>
-                <% @booking.review.rating.times do %>
-                  <i class="fas fa-star"></i>
-                <% end %>
-                <% remaining_stars = (5 - @booking.review.rating) %>
-                <% remaining_stars.times do %>
-                  <i class="far fa-star"></i>
-                <% end %>
-              </span>
-                <p> <%= @booking.review.content %></p>
-              </div>
+              <%=  render partial: 'shared/reviews/review_stars_and_comment', collection: [@booking], as: :booking %>
+            </div>
           </div>
           <div class="col-md-6 text-right">
             <%= link_to "Edit", edit_booking_review_path(@booking), class: "btn btn-primary mr-3 text-white" %>
