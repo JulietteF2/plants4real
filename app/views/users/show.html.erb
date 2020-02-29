@@ -1,3 +1,22 @@
+<% unless policy(@user).current_user? %>
+  <h3>Details about me</h3>
+        <hr>
+        <!-- User details -->
+        <div class="row d-flex align-items-center">
+          <div class="col-md-3 d-flex justify-content-center text-right">
+            <% if @user.photo.attached? %>
+              <%= cl_image_tag @user.photo.key, height: 100, class: "avatar-128 rounded-circle" %>
+            <% end %>
+          </div>
+          <div class="col-md-9">
+            <ul class="list-group">
+              <li class="list-group-item">Name: <%= "#{@user.first_name} #{@user.last_name}" %></li>
+              <li class="list-group-item">Bio: <%= @user.details %> </li>
+              <li class="list-group-item">Email: <%= @user.email %> </li>
+            </ul>
+          </div>
+        </div>
+<% else %>
 <div class="row mt-4 mb-4">
   <div class="col-12">
     <p>Hello! 👋</p>
@@ -92,6 +111,7 @@
     </div>
   </div>
 </div>
+<% end %>
 
 
 

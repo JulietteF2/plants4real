@@ -1,10 +1,13 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update]
 
-  def show; end
+  def show
+    authorize @booking
+  end
 
   def new
     @booking = Booking.new
+    authorize @booking
     @booking.user = current_user
     @booking.plant_id = params[:plant_id]
     @booking.start_date = params[:booking]["start_date"]
@@ -20,6 +23,7 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
+    authorize @booking
     if @booking.save!
       redirect_to booking_path(@booking)
     else
@@ -28,9 +32,12 @@ class BookingsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    authorize @booking
+  end
 
   def update
+    authorize @booking
     if @booking.update(booking_params)
       redirect_to booking_path(@booking)
     else

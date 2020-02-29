@@ -5,6 +5,7 @@ class PlantsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
+    @plants = policy_scope(Plant)
     if params[:queryCurrentLocation].present?
       coordinates = params[:queryCurrentLocation].split(",").map do |coordinate|
         coordinate.to_f
@@ -22,16 +23,19 @@ class PlantsController < ApplicationController
   end
 
   def show
+    authorize @plant
     @bookings = @plant.bookings
     @markers =[plant_hash(@plant)]
   end
 
   def new
     @plant = Plant.new
+    authorize @plant
   end
 
   def create
     @plant = Plant.new(plant_params)
+    authorize @plant
     @plant.user = current_user
 
     if @plant.save
@@ -42,6 +46,7 @@ class PlantsController < ApplicationController
   end
 
   def edit
+    authorize @plant
   end
 
   def update
@@ -50,11 +55,12 @@ class PlantsController < ApplicationController
     else
       render :edit
     end
+    authorize @plant
   end
 
   def destroy
     @plant.destroy
-
+    authorize @plant
     redirect_to user_path(current_user)
   end
 
