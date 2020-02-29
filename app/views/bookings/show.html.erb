@@ -64,7 +64,7 @@
 <div class="row d-flex justify-content-center mt-2">
   <div class="col-12">
     <% if @booking.status == "Pending" %>
-      <p>Please wait for <%= @booking.user.first_name %> to approve your booking...</p>
+      <p>Please wait for <%= @booking.plant.user.first_name %> to approve your booking...</p>
     <% else %>
       <% if @booking.review %>
         <div class="row">
