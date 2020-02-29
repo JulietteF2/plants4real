@@ -23,7 +23,7 @@ RSpec.describe "Booking", :type => :booking do
       name: "Fern",
       description: "A green fern",
       location: "Richmond",
-      category: "green",
+      category: "Indoor",
       price: 42.69
     }
   end
