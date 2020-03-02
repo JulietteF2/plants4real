@@ -11,7 +11,11 @@
       <% else %>
         <%= image_tag asset_path("place-holder-plant.jpg"), class: " avatar rounded-circle float-left img-fluid" %>
       <% end %>
-      <p class="card-text">&nbsp; &nbsp;<%= "#{@plant.user.first_name} #{@plant.user.last_name}"%></p>
+      <% if policy(@plant).edit? %>
+        <p>&nbsp; &nbsp;This is my plant 😊</p>
+      <% else %>
+        <p class="card-text">&nbsp; &nbsp;Owner <%= link_to "#{@plant.user.first_name} #{@plant.user.last_name}", user_path(@plant.user) %></p>
+      <% end %>
     </div>
   </div>
 </div>

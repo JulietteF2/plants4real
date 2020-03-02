@@ -35,20 +35,27 @@
   </div>
   <div class="col-md-6">
     <div class="booking-card">
-      <div class="text-right">
-        <p class="btn btn-primary"><%= link_to "Edit Plant", edit_plant_path(@plant), class: "text-white" %></p>
-        <p class="btn btn-danger text-white"><%= link_to "Delete Plant", plant_path(@plant), method: :delete, class: "text-white delete" %></p>
-      </div>
-      <div class="card mt-4 p-4 shadow-lg border-0 brand-borders">
-        <div class="form-wrapper">
-          <h5 class="card-title">Book this plant:</h5>
-          <% booking = Booking.new %>
-          <%= simple_form_for booking, url: new_plant_booking_path(@plant), method: "get" do |f| %>
-            <%= f.input :start_date, as: :string, required: true, input_html: {class: "datepicker" } %>
-            <%= f.input :end_date, as: :string, required: true, input_html: {class: "datepicker" } %>
-            <%= f.button :submit, "Book", class: "btn btn-primary text-white" %>
-          <% end %>
+      <% if policy(@plant).edit? %>
+        <div class="text-right">
+          <p class="btn btn-primary"><%= link_to "Edit Plant", edit_plant_path(@plant), class: "text-white" %></p>
+          <p class="btn btn-danger text-white"><%= link_to "Delete Plant", plant_path(@plant), method: :delete, class: "text-white delete" %></p>
         </div>
+      <% end %>
+      <div class="card mt-4 p-4 shadow-lg border-0 brand-borders">
+        <% if policy(@plant).is_plant_owner? %>
+          <p>This plant has <%= @plant.bookings.count %> booking(s)</p>
+          <%= link_to "Show my bookings", user_path(@plant.user) %>
+        <% else %>
+          <div class="form-wrapper">
+            <h5 class="card-title">Book this plant:</h5>
+            <% booking = Booking.new %>
+            <%= simple_form_for booking, url: new_plant_booking_path(@plant), method: "get" do |f| %>
+              <%= f.input :start_date, as: :string, required: true, input_html: {class: "datepicker" } %>
+              <%= f.input :end_date, as: :string, required: true, input_html: {class: "datepicker" } %>
+              <%= f.button :submit, "Book", class: "btn btn-primary text-white" %>
+            <% end %>
+          </div>
+          <% end %>
       </div>
     </div>
   </div>
