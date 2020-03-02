@@ -2,12 +2,7 @@
 <% @bookings.each do |booking| %>
    <% if booking.review %>
     <div class="card p-4 mt-4">
-      <span>
-        <% booking.review.rating.times do %>
-          <i class="fas fa-star"></i>
-        <% end %>
-      </span>
-      <p>Comment: <%= booking.review.content %></p>
+      <%=  render partial: 'shared/reviews/review_stars_and_comment', collection: [booking], as: :booking %>
     </div>
   <% else %>
   <% end %>

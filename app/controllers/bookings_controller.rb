@@ -7,9 +7,14 @@ class BookingsController < ApplicationController
     @booking = Booking.new
     @booking.user = current_user
     @booking.plant_id = params[:plant_id]
-    @booking.start_date = params[:booking_dates]["start_date"]
-    @booking.end_date = params[:booking_dates]["end_date"]
-    @booking.total_price = set_total_price
+    @booking.start_date = params[:booking]["start_date"]
+    @booking.end_date = params[:booking]["end_date"]
+    if @booking.start_date.nil?
+      puts "no booking deets"
+      redirect_to plant_path(@booking.plant_id)
+    else
+      @booking.total_price = set_total_price
+    end
     @booking.status = 'Pending'
   end
 

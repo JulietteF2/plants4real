@@ -1,0 +1,43 @@
+<% case booking.status %>
+<% when "Approved" %>
+  <% booking_status = 'success' %>
+<% when "Pending" %>
+  <% booking_status = 'warning' %>
+<% when "Cancelled" %>
+  <% booking_status = 'danger' %>
+<% end %>
+<!-- Booking information -->
+<div class="card-body pl-4">
+  <h5 class="card-title"><%= link_to booking.plant.name, plant_path(booking.plant) %></h5>
+  <p class="card-title"><i class="fas fa-user"></i>&nbsp;Owner: <%= booking.plant.user.first_name %></p>
+  <p class="card-text">Booking price: $<%= sprintf("%.2f", booking.total_price) %></p>
+  <p class="card-text"><small class="text-muted">Booking created: <%=  booking.created_at.to_formatted_s(:long_ordinal) %></small></p>
+  <!-- Booking status and link -->
+  <div class="row">
+    <div class="col-6">
+      <%= link_to "View booking", booking_path(booking) %>
+    </div>
+    <div class="col-6">
+      <div class="card border-<%= booking_status %>">
+        <div class="card-body text-<%= booking_status %>">
+          <p class="card-text text-center"> <%= booking.status %> </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Booking review -->
+  <% if booking.status == "Approved" %>
+  <hr>
+    <div class="row">
+      <div class="col-12">
+        <% if booking.review.present? %>
+          <div class="card p-4">
+            <%=  render partial: 'shared/reviews/review_stars_and_comment', collection: [booking], as: :booking %>
+          </div>
+        <% else %>
+          <%= link_to "leave a review?", booking_path(booking) %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

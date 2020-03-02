@@ -1,0 +1,10 @@
+ <span>
+  <% booking.review.rating.times do %>
+    <i class="fas fa-star"></i>
+  <% end %>
+  <% remaining_stars = (5 - booking.review.rating) %>
+  <% remaining_stars.times do %>
+    <i class="far fa-star"></i>
+  <% end %>
+</span>
+<p class="mt-2 mb-0">Comment: <%= booking.review.content %></p>

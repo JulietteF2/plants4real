@@ -5,7 +5,7 @@
   </div>
 </div>
 
-
+<!-- user details tabbed dashboard -->
 <div class="row">
   <div class="col-md-3">
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -15,83 +15,58 @@
     </div>
   </div>
 
-
   <div class="col-md-9">
-    <!-- Plant details -->
     <div class="tab-content" id="v-pills-tabContent">
+      <!-- 1. Plant details -->
       <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-      <h3>My Plants</h3>
+        <h3>I have <%= @plants.count %> Plant(s)</h3>
         <hr>
+        <div class="user-dashboard-view w-100">
           <% @plants.each do |plant| %>
-          <div class="card mb-3 border-0">
-          <div class="row no-gutters">
-            <div class="col-md-2">
-              <!-- <div class="plant-thumbnail"> -->
-                <% if plant.photo.attached? %>
-                  <%= cl_image_tag plant.photo.key, class: "card-img img-fluid" %>
-                <% else %>
-                  <%= image_tag asset_path("place-holder-plant.jpg"), class: "card-img img-fluid" %>
-                <% end %>
-              <!-- </div> -->
-            </div>
-
-            <div class="col-md-10">
-              <div class="card-body pl-4">
-                <h5 class="card-title"><%= link_to plant.name, plant_path(plant), class: "stretched-link" %></h5>
-                <p class="card-title"><i class="fas fa-map-marker-alt"></i>&nbsp;<%= plant.location %> | <%= plant.price %></p>
-                <p class="card-text"><%= plant.description %></p>
-                <p class="card-text"><small class="text-muted">Uploaded <%=  plant.created_at.to_formatted_s(:long_ordinal) %></small></p>
+            <div class="card mb-3 border-0">
+              <div class="row no-gutters">
+                <!-- Plant thumbnail -->
+                <div class="col-md-2">
+                  <%= render partial: 'shared/plants/plant_image', collection: [plant], as: :plant %>
+                </div>
+                <div class="col-md-10">
+                  <!-- Plant info card -->
+                  <%= render partial: 'shared/users/plant_booking_card', collection: [plant], as: :plant%>
+                </div>
               </div>
-              <div class="card pl-4 border-0">
-                <h5 class="card-title">Plant Bookings:</h5>
-              </div>
-                <% plant.bookings.each do |plant_booking| %>
-                    <div class="card m-3">
-                      <div class="card-body">
-                        <p class="card-text"><%= plant_booking.user.first_name %> |
-                        <%= plant_booking.start_date.to_formatted_s(:long_ordinal) %> - <%= plant_booking.end_date.to_formatted_s(:long_ordinal) %> |
-                        <%= plant_booking.status %>
-                        <%= link_to "Edit Booking Status", edit_booking_path(plant_booking) %></p>
-                      </div>
-                    </div>
-                <% end %>
             </div>
+            <hr>
+          <%end %>
         </div>
       </div>
-
-      <hr>
-      <%end %>
-      </div>
-      <!-- My booking details -->
+      <!-- 2. My booking details -->
       <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-        <div class="row">
-         <div class="col-12">
-           <h3>My Bookings</h3>
-         </div>
-         <div class="col-12 mt-4">
-           <ul class="list-group list-group-flush">
-             <% @bookings.each do |booking| %>
-               <li class="list-group-item align-items-center d-flex justify-content-end mt-4">
-                 <div class="col-6 text-left">
-                   <%= link_to "#{booking.plant.name}", booking_path(booking) %>
-                 </div>
-                  <div class="col-6 text-right">
-                     <% if booking.review %>
-                       <p class="btn btn-primary ml-3"><%= link_to "Edit review", edit_booking_review_path(booking), class: "text-white" %> </p>
-                       <p class="btn btn-danger ml-3"><%= link_to 'Delete review', review_path(booking.review), method: :delete, class: "text-white delete" %> </p>
-                     <% else %>
-                       <p class="btn btn-warning ml-3"><%= link_to "Add review", new_booking_review_path(booking), class: "text-white" %></p>
-                   </div>
-                 <% end %>
-               </li>
-             <%end %>
-           </ul>
-         </div>
-       </div>
+        <h3>I have <%= @bookings.count %> Booking(s)</h3>
+        <hr>
+        <div class="user-dashboard-view w-100">
+          <% @bookings.each do |booking| %>
+            <div class="card mb-3 border-0">
+              <div class="row no-gutters">
+                <!-- Booked plant thumbnail -->
+                <div class="col-md-2">
+                  <%= render partial: 'shared/plants/plant_image', collection: [booking.plant], as: :plant %>
+                </div>
+                <div class="col-md-10">
+                  <!-- Booking info card -->
+                  <%= render partial: 'shared/users/bookings_card', collection: [booking], as: :booking%>
+                </div>
+              </div>
+            </div>
+            <hr>
+          <%end %>
+        </div>
       </div>
-      <!-- User Details -->
+      <!-- 3. User Details -->
       <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-         <div class="row d-flex align-items-center">
+        <h3>Details about me</h3>
+        <hr>
+        <!-- User details -->
+        <div class="row d-flex align-items-center">
           <div class="col-md-3 d-flex justify-content-center text-right">
             <% if @user.photo.attached? %>
               <%= cl_image_tag @user.photo.key, height: 100, class: "avatar-128 rounded-circle" %>
@@ -100,20 +75,20 @@
           <div class="col-md-9">
             <ul class="list-group">
               <li class="list-group-item">Name: <%= "#{@user.first_name} #{@user.last_name}" %></li>
-              <li class="list-group-item">Details: <%= @user.details %> </li>
+              <li class="list-group-item">Bio: <%= @user.details %> </li>
               <li class="list-group-item">Email: <%= @user.email %> </li>
             </ul>
           </div>
-
-      </div>
-      <div class="row">
-            <div class="col-md-12">
-              <div class="text-right mt-4">
-                <p class="btn btn-primary"><%= link_to "Edit Profile", edit_user_registration_path(@user), class: "text-white" %></p>
-              </div>
+        </div>
+        <!-- Edit profile button -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-right mt-4">
+              <p class="btn btn-primary"><%= link_to "Edit Profile", edit_user_registration_path(@user), class: "text-white" %></p>
             </div>
           </div>
-         </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

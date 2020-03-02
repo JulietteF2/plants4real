@@ -1,0 +1,5 @@
+<% if plant.photo.attached? %>
+  <%= cl_image_tag plant.photo.key, class: "card-img img-fluid" %>
+<% else %>
+  <%= image_tag asset_path("place-holder-plant.jpg"), class: "card-img img-fluid" %>
+<% end %>
